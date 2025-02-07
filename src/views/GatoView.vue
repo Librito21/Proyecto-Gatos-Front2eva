@@ -1,17 +1,21 @@
 <script setup lang="ts">
-import { useGatoStore } from '@/stores/gato'
+import { usegatosStore } from '@/stores/gatos'
 
-const store = useGatoStore()
+const store = usegatosStore()
 
 store.findAll()    
 
 function insertGato() {
     store.createGato({
-        id: 1,
-        Nombre: 'JUANJO',
-        Raza: 'NEGRO',
-        Edad: 3,
-        Sexo: 'MACHO'
+      Id_Gato: 1,
+      Nombre_Gato: 'JUANJO',
+      Raza: 'NEGRO',
+      Edad: 3,
+      Sexo: 'MACHO',
+      Id_Protectora: 0,
+      Esterilizado: '',
+      Descripcion_Gato: '',
+      Imagen_Gato: ''
     })
 }
 </script>
@@ -19,10 +23,10 @@ function insertGato() {
 <template>
   <v-container>
     <v-row>
-      <v-col v-for="gato in store.gatos" :key="gato.id">
+      <v-col v-for="gato in store.gatos" :key="gato.Id_Gato">
         <v-card class="mx-auto" max-width="344">
-          <v-img :src="gato.Imagen" height="200px" cover></v-img>
-          <v-card-title>{{ gato.Nombre }}</v-card-title>
+          <v-img :src="gato.Imagen_Gato" height="200px" cover></v-img>
+          <v-card-title>{{ gato.Nombre_Gato }}</v-card-title>
           <v-card-subtitle>{{ gato.Raza }}</v-card-subtitle>
           <v-card-text>
             <div><strong>Edad:</strong> {{ gato.Edad }} años</div>

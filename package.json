@@ -1,5 +1,5 @@
 {
-  "name": "aa2",
+  "name": "gatos-vue",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -30,6 +30,7 @@
     "jiti": "^2.4.2",
     "npm-run-all2": "^7.0.2",
     "prettier": "^3.4.2",
+    "sass": "^1.83.4",
     "sass-embedded": "^1.83.4",
     "typescript": "~5.7.3",
     "vite": "^6.0.11",

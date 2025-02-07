@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import UsersView from '@/views/UsersView.vue'
+import Detalles_GatosView from '../views/Detalles_GatosView.vue'
 import GatoView from '@/views/GatoView.vue'
 
 const router = createRouter({
@@ -12,22 +12,19 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/users',
-      name: 'users',
-      component: UsersView,
+      path: '/protectoras',
+      name: 'protectoras',
+      component: () => import('../views/ProtectorasView.vue'),
+    },
+    {
+      path: '/detalles-gatos',
+      name: 'gatosss',
+      component: Detalles_GatosView,
     },
     {
       path: '/gato',
       name: 'gato',
       component: GatoView,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
     },
   ],
 })
