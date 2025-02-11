@@ -14,6 +14,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/gato">Gatos</RouterLink>
         <RouterLink to="/protectoras">Protectoras</RouterLink>
         <RouterLink to="/detalles-gatos">Detalles-Gatosss</RouterLink>
+        <RouterLink to="/log-in">Login-User</RouterLink>
       </nav>
     </div>
   </header>
