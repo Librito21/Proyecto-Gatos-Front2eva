@@ -13,4 +13,5 @@ store.findAll()
     <div v-for="gato in store.gatos">
         {{ gato.Id_Gato }} {{ gato.Id_Protectora }} {{ gato.Nombre_Gato }} {{ gato.Raza }} {{ gato.Edad }} {{ gato.Esterilizado }} {{ gato.Sexo }} {{ gato.Descripcion_Gato }} {{ gato.Imagen_Gato }}
     </div>
+
 </template>
