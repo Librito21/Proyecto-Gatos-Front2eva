@@ -19,7 +19,7 @@ const router = createRouter({
     },
     {
       path: '/detalles-gatos',
-      name: 'gatosss',
+      name: 'gatos',
       component: Detalles_GatosView,
     },
     {

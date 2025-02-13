@@ -18,13 +18,13 @@ import { RouterLink, RouterView } from 'vue-router'
 </svg>
 
     <div class="wrapper">
-      <HelloWorld msg="Gatosss" />
+      <HelloWorld msg="Gatos" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/gato">Gatos</RouterLink>
         <RouterLink to="/protectoras">Protectoras</RouterLink>
-        <RouterLink to="/detalles-gatos">Detalles-Gatosss</RouterLink>
+        <RouterLink to="/detalles-gatos">Detalles-Gatos</RouterLink>
         <RouterLink to="/log-in">Login-User</RouterLink>
       </nav>
     </div>
