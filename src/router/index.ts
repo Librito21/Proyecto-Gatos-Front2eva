@@ -9,8 +9,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home-gato',
-      component: GatoView,
+      name: 'home',
+      component: HomeView,
     },
     {
       path: '/protectoras',
@@ -19,8 +19,13 @@ const router = createRouter({
     },
     {
       path: '/detalles-gatos',
-      name: 'detalles-gatos',
+      name: 'gatos',
       component: Detalles_GatosView,
+    },
+    {
+      path: '/gato',
+      name: 'gato',
+      component: GatoView,
     },
     {
       path: '/log-in',
