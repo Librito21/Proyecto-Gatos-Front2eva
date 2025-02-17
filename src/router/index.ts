@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import Detalles_GatosView from '../views/Detalles_GatosView.vue'
 import GatoView from '@/views/GatoView.vue'
 import Login_usersView from '@/views/Login_usersView.vue'
+import Logup_usersView from '@/views/Logup_usersView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,6 +32,11 @@ const router = createRouter({
       path: '/log-in',
       name: 'Login',
       component: Login_usersView,
+    },
+    {
+      path: '/log-up',
+      name: 'Logup',
+      component: Logup_usersView,
     },
   ],
 })
