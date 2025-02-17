@@ -1,13 +1,13 @@
 export default class GatoDto {
     constructor(
-        public Id_Gato: number,
-        public Id_Protectora: number,
-        public Nombre_Gato: string,
-        public Raza: string,
-        public Edad: number,
-        public Esterilizado: string,
-        public Sexo: string,
-        public Descripcion_Gato: string,
-        public Imagen_Gato: string,
+        public id_Gato: number,
+        public id_Protectora: number,
+        public nombre_Gato: string,
+        public raza: string,
+        public edad: number,
+        public esterilizado: string,
+        public sexo: string,
+        public descripcion_Gato: string,
+        public imagen_Gato: string,
     ) { }
 }

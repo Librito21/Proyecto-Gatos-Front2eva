@@ -1,21 +1,22 @@
 <script setup lang="ts">
 import { usegatosStore } from '@/stores/gatos'
+import GatoCard from '@/components/GatoCard.vue'
 
 const store = usegatosStore()
 
-store.findAll()    
+store.fetchGato()
 
 function insertGato() {
     store.createGato({
-      Id_Gato: 1,
-      Nombre_Gato: 'JUANJO',
-      Raza: 'NEGRO',
-      Edad: 3,
-      Sexo: 'MACHO',
-      Id_Protectora: 0,
-      Esterilizado: '',
-      Descripcion_Gato: '',
-      Imagen_Gato: ''
+      id_Gato: 1,
+      nombre_Gato: 'JUANJO',
+      raza: 'NEGRO',
+      edad: 3,
+      sexo: 'Macho',
+      id_Protectora: 0,
+      esterilizado: '',
+      descripcion_Gato: '',
+      imagen_Gato: ''
     })
 }
 </script>
@@ -23,16 +24,8 @@ function insertGato() {
 <template>
   <v-container>
     <v-row>
-      <v-col v-for="gato in store.gatos" :key="gato.Id_Gato">
-        <v-card class="mx-auto" max-width="344">
-          <v-img :src="gato.Imagen_Gato" height="200px" cover></v-img>
-          <v-card-title>{{ gato.Nombre_Gato }}</v-card-title>
-          <v-card-subtitle>{{ gato.Raza }}</v-card-subtitle>
-          <v-card-text>
-            <div><strong>Edad:</strong> {{ gato.Edad }} años</div>
-            <div><strong>Sexo:</strong> {{ gato.Sexo }}</div>
-          </v-card-text>
-        </v-card>
+      <v-col v-for="gato in store.gatos" :key="gato.id_Gato">
+        <GatoCard :gato="gato" />
       </v-col>
     </v-row>
     
