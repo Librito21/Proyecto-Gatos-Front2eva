@@ -9,11 +9,11 @@ export const useprotectorasStore = defineStore('protectoras', () => {
         //fetch('https://jsonplaceholder.typicode.com/user')
         //resizeBy.json()
         //data
-        let data = [
+        /*let data = [
             { Id_Protectora: 0, Nombre_Protectora: 'test', Direccion: 'test', Correo_Protectora: 'test', Telefono_Protectora: 758149491, Horario_Atención: 'test', Imagen_Protectora: 'test' },
             { Id_Protectora: 1, Nombre_Protectora: 'test', Direccion: 'test', Correo_Protectora: 'test', Telefono_Protectora: 752963188, Horario_Atención: 'test', Imagen_Protectora: 'test' },
         ]
-        protectoras.value.splice(0, protectoras.value.length, ...data)
+        protectoras.value.splice(0, protectoras.value.length, ...data)*/
     }
     function createProtectora(protectora: ProtectoraDto) {
         //fetch(POST)
@@ -29,13 +29,20 @@ export const useprotectorasStore = defineStore('protectoras', () => {
     }
 
 
-    async function fetchProtectora() {
-        fetch('https://jsonplaceholder.typicode.com/user')
-            .then((res) => res.json())
-            .then((data) => {
-                protectoras.value = []
-                protectoras.value = data
-            })
+ async function fetchProtectora() {
+        try {
+            const response = await fetch("https://localhost:7278/api/Protectora");
+
+            if (!response.ok) {
+                throw new Error('Error en la solicitud');
+            }
+
+            const data: ProtectoraDto[] = await response.json();
+            protectoras.value = data;
+            console.log('Gatos obtenidos:', data);
+        } catch (error) {
+            console.error('Error al obtener los gatos:', error);
+        }
     }
 
     // REST

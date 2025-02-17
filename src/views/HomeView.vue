@@ -31,7 +31,7 @@ store.findAll();
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: bold;
   color: #ddd;
   gap: 5px;

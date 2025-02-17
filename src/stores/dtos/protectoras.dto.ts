@@ -1,11 +1,11 @@
 export default class ProtectoraDto {
     constructor(
-        public Id_Protectora: number,
-        public Nombre_Protectora: string,
-        public Direccion: string,
-        public Correo_Protectora: string,
-        public Telefono_Protectora: number,
-        public Horario_Atención: string,
-        public Imagen_Protectora: string
+        public id_Protectora: number,
+        public nombre_Protectora: string,
+        public direccion: string,
+        public email: string,
+        public telefono: number,
+        public horario_Atención: string,
+        public imagen_Protectora: string
     ) { }
 }

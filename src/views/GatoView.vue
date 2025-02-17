@@ -24,7 +24,7 @@ function insertGato() {
 <template>
   <v-container>
     <v-row>
-      <v-col v-for="gato in store.gatos" :key="gato.id_Gato" cols="1" sm="" md="4" lg="2">
+      <v-col v-for="gato in store.gatos" :key="gato.id_Gato" cols="1" sm="6" md="4" lg="2">
         <GatoCard :gato="gato" />
       </v-col>
     </v-row>
