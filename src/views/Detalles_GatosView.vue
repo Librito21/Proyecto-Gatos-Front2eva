@@ -1,15 +1,21 @@
 <script setup lang="ts">
+import GatoCard from '@/components/GatoCard.vue';
 import { usegatosStore } from '@/stores/gatos';
 
-
 const store = usegatosStore()
-store.findAll()
+
+store.fetchGato()
 
 </script>
 
 <template>
-    <h1>Pagina de los detalles de los gatos</h1>
-    <div v-for="gato in store.gatos">
-        {{ gato.Id_Gato }} {{ gato.Id_Protectora }} {{ gato.Nombre_Gato }} {{ gato.Raza }} {{ gato.Edad }} {{ gato.Esterilizado }} {{ gato.Sexo }} {{ gato.Descripcion_Gato }} {{ gato.Imagen_Gato }}
-    </div>
+<v-card class="mx-auto" max-width="644" v-for="gato in store.gatos" :key="gato.id_Gato">
+    <v-img :src="gato.imagen_Gato" height="200px" cover></v-img>
+    <v-card-title>{{ gato.nombre_Gato }}</v-card-title>
+    <v-card-subtitle>{{ gato.raza }}</v-card-subtitle>
+    <v-card-text>
+        <div><strong>Sexo:</strong> {{ gato.sexo }}</div>
+        <div><strong>Edad:</strong> {{ gato.edad }} años</div>
+    </v-card-text>
+  </v-card>
 </template>

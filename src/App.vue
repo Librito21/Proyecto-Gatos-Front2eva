@@ -1,34 +1,13 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import Header from './components/Header.vue';
+
 </script>
 
 <template>
-  <header>
-    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
-  <!-- Huella grande -->
-  <circle cx="100" cy="120" r="40" fill="#FF5500" stroke="#3B2F2F" stroke-width="5"/>
-  
-  <!-- Dedos -->
-  <circle cx="60" cy="70" r="20" fill="#FF5500" stroke="#3B2F2F" stroke-width="4"/>
-  <circle cx="100" cy="60" r="22" fill="#FF5500" stroke="#3B2F2F" stroke-width="4"/>
-  <circle cx="140" cy="70" r="20" fill="#FF5500" stroke="#3B2F2F" stroke-width="4"/>
-  
-  <!-- Círculo interior en la palma -->
-  <circle cx="100" cy="132" r="27" fill="whitesmoke"/>
-</svg>
 
-    <div class="wrapper">
-      <HelloWorld msg="Gatos" />
+<Header/>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/gato">Gatos</RouterLink>
-        <RouterLink to="/protectoras">Protectoras</RouterLink>
-        <RouterLink to="/detalles-gatos">Detalles-Gatos</RouterLink>
-        <RouterLink to="/log-in">Login-User</RouterLink>
-      </nav>
-    </div>
-  </header>
   <RouterView />
 </template>
 
