@@ -79,7 +79,7 @@ store.findAll();
   background: rgba(255, 85, 0, 0.1); /* Fondo sutil basado en el color del logo */
   padding: 30px;
   border-radius: 10px;
-  color: white;
+  color: black;
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
@@ -110,5 +110,17 @@ store.findAll();
 
 .cta-button:hover {
   background-color: #FB7C3C;
+}
+
+@media (prefers-color-scheme: dark) {
+  .quienes-somos {
+  background: rgba(255, 85, 0, 0.1); /* Fondo sutil basado en el color del logo */
+  padding: 30px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
 }
 </style>
