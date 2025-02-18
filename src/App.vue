@@ -15,11 +15,16 @@ import Header from './components/Header.vue';
 header {
   line-height: 1.5;
   max-height: 100vh;
+  width: 1300px;
 }
 
 .logo {
   display: block;
   margin: 0 auto 2rem;
+}
+
+.v-container {
+  width: 1300px;
 }
 
 nav {

@@ -23,7 +23,7 @@
         <RouterLink to="/protectoras">Protectoras</RouterLink>
       </nav>
       <div class="usuario">
-        <RouterLink to="/log-in">Iniciar Sesion</RouterLink>
+        <RouterLink to="/log-in">Iniciar Sesion‎ ‎ ‎</RouterLink>
         <RouterLink to="/log-up">Registrarse</RouterLink>
       </div>
         
@@ -44,6 +44,7 @@ nav {
 }
 
 .usuario {
+  display: flex;
   margin-left: auto; /* Esto mueve el contenido de 'usuario' a la izquierda */
 }
 </style>

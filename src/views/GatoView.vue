@@ -6,31 +6,14 @@ const store = usegatosStore()
 
 store.fetchGato()
 
-function insertGato() {
-  store.createGato({
-    id_Gato: 1,
-    nombre_Gato: 'JUANJO',
-    raza: 'NEGRO',
-    edad: 3,
-    sexo: 'Macho',
-    id_Protectora: 0,
-    esterilizado: '',
-    descripcion_Gato: '',
-    imagen_Gato: ''
-  })
-}
 </script>
 
 <template>
-  <v-container>
+  <v-container fluid class="d-flex" style="align-items: center; justify-content: center;">
     <v-row>
-      <v-col v-for="gato in store.gatos" :key="gato.id_Gato" cols="1" sm="6" md="4" lg="4">
+      <v-col v-for="gato in store.gatos" :key="gato.id_Gato" cols="1" sm="5" md="4" lg="4">
         <GatoCard :gato="gato" />
       </v-col>
     </v-row>
-
-    <v-btn color="primary" @click="insertGato">
-      Insertar Gato
-    </v-btn>
-  </v-container>
+    </v-container>
 </template>
