@@ -14,12 +14,19 @@ store.fetchProtectora()
   <div class="d">
     <h1>Protectoras</h1>
   </div>
+  <div class="protectoras-container">
   <v-col v-for="protectora in store.protectoras" :key="protectora.id_Protectora" >
     <ProtectorasCard :protectora="protectora"/>
   </v-col>
+  </div>
 </template>
 
 <style scoped lang="scss">
+
+.protectoras-container{
+  display: flex;
+
+}
 
 @media (min-width: 1024px) {
   .about {
