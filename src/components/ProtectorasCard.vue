@@ -11,7 +11,7 @@ const props = defineProps({
 
 <template>
 <v-card class="protectora-card" max-width="500">
-      <v-img class="protectora-card__image" :src="protectora.imagen_Protectora" height="200px" cover></v-img>
+      <v-img class="protectora-card__image" :src="protectora.imagen_Protectora" cover></v-img>
       <v-card-title class="protectora-card__title">{{ protectora.nombre_Protectora }}</v-card-title>
       <v-card-subtitle class="protectora-card__subtitle"><strong>Dirección:</strong> {{ protectora.direccion}}</v-card-subtitle>
         <v-card-text class="protectora-card__content">
@@ -22,3 +22,9 @@ const props = defineProps({
     </v-card>
   </template>
   
+
+<style scoped lang="scss">
+.v-img__img--cover {
+  object-fit: cover;
+}
+</style>

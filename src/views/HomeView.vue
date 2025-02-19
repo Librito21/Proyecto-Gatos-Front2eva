@@ -41,7 +41,7 @@ store.findAll();
     </p>
 
     <div class="cta-container">
-      <button class="cta-button">Ver gatos en adopción</button>
+      <RouterLink to="/gato"><button class="cta-button">Ver gatos en adopción</button></RouterLink>
     </div>
   </div>
 </template>
