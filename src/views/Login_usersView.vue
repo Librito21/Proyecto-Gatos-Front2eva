@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 
 
@@ -52,7 +51,7 @@ const togglePasswordVisibility = () => {
         <div v-if="errorMessage" class="login-form__error-message">{{ errorMessage }}</div>
     </div>
 
-    <Footer />
+    
 </template>
 
 <style lang="scss" scoped>

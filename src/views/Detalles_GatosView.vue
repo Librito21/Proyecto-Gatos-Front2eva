@@ -1,21 +1,49 @@
+<template>
+  <div class="detalles-gato-view">
+    <DetallesGatoCard v-if="gato" :gato="gato" />
+    <p v-else>Cargando detalles del gato...</p>
+    <button @click="volverAHome">Volver a Home</button>
+  </div>
+</template>
+
 <script setup lang="ts">
-import GatoCard from '@/components/GatoCard.vue';
+import { ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { usegatosStore } from '@/stores/gatos';
+import DetallesGatoCard from '@/components/DetallesGatoCard.vue';
 
-const store = usegatosStore()
+const route = useRoute();
+const router = useRouter();
+const store = usegatosStore();
+const gato = ref(null);
 
-store.fetchGato()
+onMounted(async () => {
+  const id = parseInt(route.params.id as string);
+  await store.fetchGato();
+  gato.value = store.gatos.find(g => g.id_Gato === id) || null;
+});
 
+const volverAHome = () => {
+  router.push('/');
+};
 </script>
 
-<template>
-<v-card class="mx-auto" max-width="644" v-for="gato in store.gatos" :key="gato.id_Gato">
-    <v-img :src="gato.imagen_Gato" height="200px" cover></v-img>
-    <v-card-title>{{ gato.nombre_Gato }}</v-card-title>
-    <v-card-subtitle>{{ gato.raza }}</v-card-subtitle>
-    <v-card-text>
-        <div><strong>Sexo:</strong> {{ gato.sexo }}</div>
-        <div><strong>Edad:</strong> {{ gato.edad }} años</div>
-    </v-card-text>
-  </v-card>
-</template>
+<style lang="scss" scoped>
+.detalles-gato-view {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+button {
+  background-color: #ff5500;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+button:hover {
+  background-color: #fb7c3c;
+}
+</style>
