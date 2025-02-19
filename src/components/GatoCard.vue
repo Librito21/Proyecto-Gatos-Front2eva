@@ -11,7 +11,7 @@ const props = defineProps({
 
 <template>
   <v-card class="mx-auto" max-width="344">
-    <v-img :src="gato.imagen_Gato" height="200px" cover></v-img>
+    <v-img class="Imagen-gato" :src="gato.imagen_Gato" height="200px"></v-img>
     <v-card-title>{{ gato.nombre_Gato }}</v-card-title>
     <v-card-subtitle>{{ gato.raza }}</v-card-subtitle>
     <v-card-text>
@@ -20,3 +20,9 @@ const props = defineProps({
     </v-card-text>
   </v-card>
 </template>
+
+<style lang="scss" scoped>
+.Imagen-gato :deep(.v-img__img--contain) {
+  object-fit: fill;
+}
+</style>
