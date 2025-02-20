@@ -51,8 +51,6 @@ const togglePasswordVisibility = () => {
         </form>
         <div v-if="errorMessage" class="login-form__error-message">{{ errorMessage }}</div>
     </div>
-
-    <Footer />
 </template>
 
 <style lang="scss" scoped>
