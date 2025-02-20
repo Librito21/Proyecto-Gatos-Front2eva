@@ -1,35 +1,21 @@
 <template>
-    <div class="detalles-gato-card">
-      <img :src="gato.imagen_Gato" :alt="gato.nombre_Gato" class="gato-imagen" />
-      <div class="detalles">
-        <h2>{{ gato.nombre_Gato }}</h2>
-        <p><strong>Sexo:</strong> {{ gato.sexo }}</p>
-        <p><strong>Edad:</strong> {{ gato.edad }} años</p>
-        <p><strong>Descripción:</strong> {{ gato.descripcion_Gato }}</p>
-      </div>
-    </div>
-  </template>
-  
-  <script setup lang="ts">
-  import { defineProps } from 'vue';
-  import type GatoDto from '@/dtos/gato.dto';
-  
-  defineProps<{ gato: GatoDto }>();
-  </script>
-  
-  <style lang="scss" scoped>
-  .detalles-gato-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-  }
-  .gato-imagen {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-  }
-  </style>
-  
+  <v-card>
+    <v-img :src="gato.imagen_Gato" height="300px" cover></v-img>
+    <v-card-title>{{ gato.nombre_Gato }}</v-card-title>
+    <v-card-subtitle>{{ gato.raza }} - {{ gato.edad }} años</v-card-subtitle>
+    <v-card-text>
+      <p><strong>Sexo:</strong> {{ gato.sexo }}</p>
+      <p><strong>Esterilizado:</strong> {{ gato.esterilizado }}</p>
+      <p><strong>Descripción:</strong> {{ gato.descripcion_Gato }}</p>
+    </v-card-text>
+    <v-card-actions>
+      <v-btn color="primary" to="/">Volver al inicio</v-btn>
+    </v-card-actions>
+  </v-card>
+</template>
+
+<script setup lang="ts">
+import type GatoDto from "../stores/dtos/gato.dto";
+
+defineProps<{ gato: GatoDto }>();
+</script>

@@ -10,7 +10,9 @@ const props = defineProps({
 </script>
 
 <template>
+  
   <v-card class="mx-auto" max-width="344">
+    <v-card @click="$router.push(`/detalles-gato/${gato.id_Gato}`)">
     <v-img class="Imagen-gato" :src="gato.imagen_Gato" height="200px"></v-img>
     <v-card-title>{{ gato.nombre_Gato }}</v-card-title>
     <v-card-subtitle>{{ gato.raza }}</v-card-subtitle>
@@ -19,6 +21,8 @@ const props = defineProps({
         <div><strong>Edad:</strong> {{ gato.edad }} años</div>
     </v-card-text>
   </v-card>
+  </v-card>
+  
 </template>
 
 <style lang="scss" scoped>
