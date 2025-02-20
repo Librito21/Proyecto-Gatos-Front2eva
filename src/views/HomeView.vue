@@ -74,24 +74,21 @@ store.findAll();
   margin-top: 5px;
 }
 
-/* 📌 Sección "Quiénes somos" */
 .quienes-somos {
-  background: rgba(255, 85, 0, 0.1); /* Fondo sutil basado en el color del logo */
+  background: rgba(255, 85, 0, 0.1);
   padding: 30px;
   border-radius: 10px;
   color: black;
   text-align: center;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 8px;
 }
 
-/* ✨ Resaltado de palabras clave */
 .highlight {
   color: #FF5500;
   font-weight: bold;
 }
 
-/* 📌 Estilo del botón */
 .cta-container {
   margin-top: 20px;
 }
@@ -114,7 +111,7 @@ store.findAll();
 
 @media (prefers-color-scheme: dark) {
   .quienes-somos {
-  background: rgba(255, 85, 0, 0.1); /* Fondo sutil basado en el color del logo */
+  background: rgba(255, 85, 0, 0.1);
   padding: 30px;
   border-radius: 10px;
   color: white;
