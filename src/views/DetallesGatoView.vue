@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="margin-top: 110px;">
     <v-row justify="center">
       <v-col cols="12" md="8">
         <DetallesGatoCard v-if="gato" :gato="gato" :protectora="protectora" />
