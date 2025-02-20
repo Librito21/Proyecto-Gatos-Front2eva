@@ -9,7 +9,7 @@
       <p><strong>Descripción:</strong> {{ gato.descripcion_Gato }}</p>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="primary" to="/">Volver al inicio</v-btn>
+      <v-btn color="primary" to="/gato">Volver a gatos</v-btn>
     </v-card-actions>
   </v-card>
 </template>
