@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Detalles_GatosView from '../views/Detalles_GatosView.vue'
 import GatoView from '@/views/GatoView.vue'
 import Login_usersView from '@/views/Login_usersView.vue'
 import Logup_usersView from '@/views/Logup_usersView.vue'
+import DetallesGatoView from '@/views/DetallesGatoView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,9 +19,10 @@ const router = createRouter({
       component: () => import('../views/ProtectorasView.vue'),
     },
     {
-      path: '/detalles-gatos',
-      name: 'gatos',
-      component: Detalles_GatosView,
+      path: '/detalles-gato/:id',
+      name: 'DetallesGato',
+      component: DetallesGatoView,
+      props: true
     },
     {
       path: '/gato',
