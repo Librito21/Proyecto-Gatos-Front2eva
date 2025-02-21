@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 
 
@@ -33,8 +32,8 @@ const togglePasswordVisibility = () => {
         <h2 class="login-form__title">Iniciar sesión</h2>
         <form @submit.prevent="handleLogin" class="login-form__form">
             <div class="login-form__field">
-                <label for="email" class="login-form__label">Correo electrónico</label>
-                <input type="email" v-model="email" id="email" class="login-form__input" required />
+                <label for="name" class="login-form__label">Usuario</label>
+                <input type="name" v-model="name" id="name" class="login-form__input" required />
             </div>
             <div class="login-form__field">
                 <label for="password" class="login-form__label">Contraseña</label>
@@ -52,14 +51,14 @@ const togglePasswordVisibility = () => {
         <div v-if="errorMessage" class="login-form__error-message">{{ errorMessage }}</div>
     </div>
 
-    <Footer />
+    
 </template>
 
 <style lang="scss" scoped>
 /* Bloque principal del formulario de login */
 .login-form {
   max-width: 400px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;

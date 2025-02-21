@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import GatoView from '@/views/GatoView.vue'
-import Login_usersView from '@/views/Login_usersView.vue'
-import Logup_usersView from '@/views/Logup_usersView.vue'
 import DetallesGatoView from '@/views/DetallesGatoView.vue'
+import Iniciar_sesionView from '@/views/Iniciar_sesionView.vue'
+import RegistrarseView from '@/views/RegistrarseView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,14 +30,14 @@ const router = createRouter({
       component: GatoView,
     },
     {
-      path: '/log-in',
-      name: 'Login',
-      component: Login_usersView,
+      path: '/iniciar-sesion',
+      name: 'iniciar-sesion',
+      component: Iniciar_sesionView,
     },
     {
-      path: '/log-up',
-      name: 'Logup',
-      component: Logup_usersView,
+      path: '/registrarse',
+      name: 'registrarse',
+      component: RegistrarseView,
     },
   ],
 })

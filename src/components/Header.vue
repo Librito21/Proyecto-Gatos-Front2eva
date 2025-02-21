@@ -25,8 +25,8 @@
           <RouterLink to="/protectoras">Protectoras</RouterLink>
         </nav>
         <div class="usuario">
-          <RouterLink to="/log-in">Iniciar Sesion‎ ‎ ‎</RouterLink>
-          <RouterLink to="/log-up">Registrarse</RouterLink>
+          <RouterLink to="/iniciar-sesion">Iniciar Sesion‎ ‎ ‎</RouterLink>
+          <RouterLink to="/registrarse">Registrarse</RouterLink>
         </div>
       </div>
 
