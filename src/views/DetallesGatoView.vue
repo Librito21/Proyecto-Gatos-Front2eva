@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="12" md="8">
+      <v-col cols="12" md="8" class="ContainerDetallesGatos">
         <DetallesGatoCard v-if="gato" :gato="gato" :protectora="protectora" />
         <v-alert v-else-if="cargando" type="info">Cargando...</v-alert>
         <v-alert v-else type="error">No se encontró el gato.</v-alert>
@@ -52,3 +52,12 @@ onMounted(() => {
 
 watch(() => route.params.id, obtenerGato);
 </script>
+
+<style scoped lang="scss">
+
+.ContainerDetallesGatos{
+  display: flex;
+  justify-content: center;
+}
+
+</style>
