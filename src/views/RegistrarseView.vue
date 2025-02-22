@@ -3,34 +3,63 @@ import { ref } from 'vue';
 import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 
-
+const nombre = ref('');
 const email = ref('');
-const password = ref('');
+const contraseña = ref('');
 const errorMessage = ref('');
+const successMessage = ref('');
 const isPasswordVisible = ref(false);
 
-const handleLogin = () => {
-  if (email.value === 'user@example.com' && password.value === 'password') {
-    window.location.href = '/'; 
-  } else {
-    errorMessage.value = 'Correo electrónico o contraseña incorrectos';
+const handleRegister = async () => {
+  if (!nombre.value || !email.value || !contraseña.value) {
+    errorMessage.value = 'Todos los campos son obligatorios';
+    return;
+  }
+
+  try {
+    const response = await fetch('https://localhost:7278/api/Usuario', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        nombre: nombre.value,
+        email: email.value,
+        contraseña: contraseña.value
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Error al registrar usuario');
+    }
+
+    successMessage.value = 'Registro exitoso. Redirigiendo...';
+    errorMessage.value = '';
+
+    setTimeout(() => {
+      window.location.href = '/iniciar-sesion'; // Redirigir al login después de registrar
+    }, 2000);
+
+  } catch (error: any) {
+    errorMessage.value = error.message;
+    successMessage.value = '';
   }
 };
 
 const togglePasswordVisibility = () => {
   isPasswordVisible.value = !isPasswordVisible.value;
 };
-
 </script>
 
 <template>
-
   <div class="login-form">
     <h2 class="login-form__title">Registrarse</h2>
-    <form @submit.prevent="handleLogin" class="login-form__form">
+    <form @submit.prevent="handleRegister" class="login-form__form">
       <div class="login-form__field">
-        <label for="name" class="login-form__label">Usuario</label>
-        <input type="name" v-model="name" id="name" class="login-form__input" required />
+        <label for="nombre" class="login-form__label">Usuario</label>
+        <input type="text" v-model="nombre" id="nombre" class="login-form__input" required />
       </div>
       <div class="login-form__field">
         <label for="email" class="login-form__label">Correo electrónico</label>
@@ -39,7 +68,7 @@ const togglePasswordVisibility = () => {
       <div class="login-form__field">
         <label for="password" class="login-form__label">Contraseña</label>
         <div class="login-form__password-wrapper">
-          <input :type="isPasswordVisible ? 'text' : 'password'" v-model="password" id="password"
+          <input :type="isPasswordVisible ? 'text' : 'password'" v-model="contraseña" id="contraseña"
             class="login-form__input" required />
           <button type="button" @click="togglePasswordVisibility" class="login-form__eye-icon">
             <span v-if="isPasswordVisible">👁️</span>
@@ -47,13 +76,15 @@ const togglePasswordVisibility = () => {
           </button>
         </div>
       </div>
-      <button type="submit" class="login-form__button login-form__button--primary">Entrar</button>
+      <button type="submit" class="login-form__button login-form__button--primary">Registrarse</button>
     </form>
     <div v-if="errorMessage" class="login-form__error-message">{{ errorMessage }}</div>
+    <div v-if="successMessage" class="login-form__success-message">{{ successMessage }}</div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+/* Estilos idénticos al formulario de login */
 .login-form {
   max-width: 400px;
   margin: 20px auto;
@@ -115,6 +146,13 @@ const togglePasswordVisibility = () => {
 
 .login-form__error-message {
   color: red;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.login-form__success-message {
+  color: green;
   text-align: center;
   margin-top: 1rem;
   font-size: 0.9rem;
