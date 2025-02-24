@@ -9,19 +9,24 @@ const isPasswordVisible = ref(false);
 
 const handleLogin = async () => {
   try {
-    const response = await fetch(`https://localhost:7278/api/Usuario?email=${email.value}&contraseña=${contraseña.value}`);
+    const response = await fetch('https://localhost:7278/api/Usuario/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email.value,
+        contraseña: contraseña.value
+      })
+    });
 
-    if (!response.ok) {
-      throw new Error('Correo o contraseña incorrectos');
+    const data = await response.json();
+
+    if (!response.ok || !data) {
+      throw new Error(data?.message || 'Correo electrónico o contraseña incorrectos');
     }
 
-    const user = await response.json();
-
-    if (!user) {
-      throw new Error('Usuario no encontrado');
-    }
-
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(data));
 
     successMessage.value = 'Inicio de sesión exitoso. Redirigiendo...';
     errorMessage.value = '';
@@ -29,8 +34,12 @@ const handleLogin = async () => {
     setTimeout(() => {
       window.location.href = '/';
     }, 1500);
-  } catch (error) {
-    errorMessage.value = (error as any).message;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      errorMessage.value = error.message;
+    } else {
+      errorMessage.value = 'Ha ocurrido un error inesperado';
+    }
     successMessage.value = '';
   }
 };
