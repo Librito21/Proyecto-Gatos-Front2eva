@@ -25,28 +25,42 @@
   </template>
   
   <style scoped>
-  .faq-item {
-    white-space: normal !important;
-    overflow: visible !important;
-  }
-  
-  .faq-text {
-    white-space: normal !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    display: block !important;
-    text-overflow: unset !important;
-    line-height: 1.4 !important;
-    max-width: 100% !important;
-    height: auto !important;
-    min-height: 20px !important; /* Ajusta el mínimo para que no se colapse */
-  }
-  
-  .faq-title {
-    font-weight: bold;
-    white-space: normal !important;
-    overflow: visible !important;
-  }
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  z-index: 500; 
+}
+
+.faq {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.faq-answer {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #333;
+  position: relative;
+  z-index: 1;
+}
+
+/* Asegurar que el contenido respete la cabecera */
+body {
+  padding-top: 80px; 
+}
+
   </style>
   
   <script setup lang="ts">
