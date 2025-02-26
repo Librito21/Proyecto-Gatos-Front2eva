@@ -26,6 +26,7 @@ header {
 }
 
 .v-container {
+  margin-top: 105px;
   width: 1300px;
 }
 
