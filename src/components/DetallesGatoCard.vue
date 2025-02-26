@@ -105,11 +105,14 @@ const enviarEmail = async () => {
   flex-direction: column;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 620px) {
 
   .CardGatoDetalles {
     width: 50%;
   }
 
+  .v-card-actions {
+  flex-direction: row;
+}
 }
 </style>
