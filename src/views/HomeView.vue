@@ -81,7 +81,7 @@ store.findAll();
   color: black;
   text-align: center;
   max-width: 800px;
-  margin: 10px 8px;
+  margin: 0 auto;
 }
 
 .highlight {
