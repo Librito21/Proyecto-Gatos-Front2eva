@@ -174,4 +174,19 @@ const togglePasswordVisibility = () => {
 .login-form__eye-icon:hover {
   color: #0056b3;
 }
+
+@media (prefers-color-scheme: dark) {
+  .login-form__title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: black;
+}
+.login-form__label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: black;
+}
+}
 </style>
