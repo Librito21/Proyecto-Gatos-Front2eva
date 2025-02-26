@@ -1,6 +1,6 @@
 <template>
-  <v-card>
-    <v-img :src="gato.imagen_Gato" cover></v-img>
+  <v-card class = "CardGatoDetalles">
+    <v-img :src="gato.imagen_Gato" cover class= "FotoDetallesGato"></v-img>
     <v-card-title>{{ gato.nombre_Gato }}</v-card-title>
     <v-card-subtitle>{{ gato.raza }} - {{ gato.edad }} años</v-card-subtitle>
     <v-card-text>
@@ -100,3 +100,15 @@ const enviarEmail = async () => {
   }
 };
 </script>
+
+<style scoped lang="scss">
+
+.CardGatoDetalles{
+  width: 50%;
+}
+
+.FotoDetallesGato{
+  max-height: 400px;
+}
+
+</style>

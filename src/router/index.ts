@@ -4,6 +4,7 @@ import GatoView from '@/views/GatoView.vue'
 import DetallesGatoView from '@/views/DetallesGatoView.vue'
 import Iniciar_sesionView from '@/views/Iniciar_sesionView.vue'
 import RegistrarseView from '@/views/RegistrarseView.vue'
+import FAQ from '@/views/FAQView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,11 @@ const router = createRouter({
       path: '/gato',
       name: 'gato',
       component: GatoView,
+    },
+    {
+      path: "/faq",
+      name: "FAQ",
+      component: FAQ,
     },
     {
       path: '/iniciar-sesion',
