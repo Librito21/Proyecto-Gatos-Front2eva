@@ -47,6 +47,14 @@
 <style scoped>
 .faq-page-wrapper {
   background-color: transparent;
+  /* Add padding-top to account for fixed header on desktop */
+  padding-top: 0;
+}
+
+@media (min-width: 1024px) {
+  .faq-page-wrapper {
+    padding-top: 110px; /* Adjust this value based on your header height */
+  }
 }
 
 .faq-title {
