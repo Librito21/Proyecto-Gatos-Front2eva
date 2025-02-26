@@ -60,4 +60,12 @@ watch(() => route.params.id, obtenerGato);
   justify-content: center;
 }
 
+@media (min-width: 1010px) {
+
+.v-container {
+  margin-top: 105px;
+}
+
+}
+
 </style>

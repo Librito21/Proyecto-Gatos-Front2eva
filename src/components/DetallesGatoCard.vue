@@ -1,21 +1,17 @@
 <template>
-  <v-card class = "CardGatoDetalles">
-    <v-img :src="gato.imagen_Gato" cover class= "FotoDetallesGato"></v-img>
+  <v-card class="CardGatoDetalles">
+    <v-img :src="gato.imagen_Gato" cover class="FotoDetallesGato"></v-img>
     <v-card-title>{{ gato.nombre_Gato }}</v-card-title>
     <v-card-subtitle>{{ gato.raza }} - {{ gato.edad }} años</v-card-subtitle>
     <v-card-text>
       <p><strong>Sexo:</strong> {{ gato.sexo }}</p>
       <p><strong>Esterilizado:</strong> {{ gato.esterilizado }}</p>
       <p><strong>Protectora:</strong> {{ protectora?.nombre_Protectora || "No disponible" }}</p>
-      <p><strong>Descripción:</strong> {{ gato.descripcion_Gato }}</p>      
+      <p><strong>Descripción:</strong> {{ gato.descripcion_Gato }}</p>
     </v-card-text>
     <v-card-actions>
       <v-btn color="primary" to="/gato">Volver a gatos</v-btn>
-      <v-btn 
-        color="green" 
-        @click="abrirModal" 
-        :disabled="!userEmail || !protectora"
-      >
+      <v-btn color="green" @click="abrirModal" :disabled="!userEmail || !protectora">
         Contactar Protectora
       </v-btn>
     </v-card-actions>
@@ -25,12 +21,7 @@
       <v-card>
         <v-card-title>Contactar a {{ protectora?.nombre_Protectora }}</v-card-title>
         <v-card-text>
-          <v-textarea 
-            v-model="mensaje" 
-            label="Escribe tu mensaje" 
-            outlined 
-            dense
-          ></v-textarea>
+          <v-textarea v-model="mensaje" label="Escribe tu mensaje" outlined dense></v-textarea>
         </v-card-text>
         <v-card-actions>
           <v-btn color="grey" @click="cerrarModal">Cancelar</v-btn>
@@ -85,8 +76,8 @@ const enviarEmail = async () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         IdUsuario: userId.value,
-        To: props.protectora.email, 
-        Subject: `Interesado en adoptar a ${props.gato.nombre_Gato}`, 
+        To: props.protectora.email,
+        Subject: `Interesado en adoptar a ${props.gato.nombre_Gato}`,
         Message: mensaje.value,
       }),
     });
@@ -102,13 +93,23 @@ const enviarEmail = async () => {
 </script>
 
 <style scoped lang="scss">
-
-.CardGatoDetalles{
-  width: 50%;
+.CardGatoDetalles {
+  width: 72%;
 }
 
-.FotoDetallesGato{
+.FotoDetallesGato {
   max-height: 400px;
 }
 
+.v-card-actions {
+  flex-direction: column;
+}
+
+@media (min-width: 600px) {
+
+  .CardGatoDetalles {
+    width: 50%;
+  }
+
+}
 </style>

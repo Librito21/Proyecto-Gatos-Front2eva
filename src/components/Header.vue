@@ -75,7 +75,7 @@ nav {
   justify-content: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 788px) {
   header {
     justify-content: flex-start;
     padding: 15px 30px;
@@ -99,7 +99,7 @@ nav {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1010px) {
   header {
     padding: 15px 150px;
     position: absolute;
@@ -126,4 +126,3 @@ nav {
   }
 }
 </style>
- 
