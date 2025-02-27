@@ -228,5 +228,9 @@ const mostrarTodasRazas = () => {
   .filtro-label {
     font-size: 0.8125rem;
   }
+
+  .pa-0{
+    max-width: 30%;
+  }
 }
 </style>
