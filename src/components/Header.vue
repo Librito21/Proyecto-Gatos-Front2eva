@@ -6,34 +6,98 @@ import { useAutenticacion } from '@/stores/Autentificacion';
 const Autenticacion = useAutenticacion();
 const { usuario } = storeToRefs(Autenticacion);
 const mostrarMenu = ref(false);
+const isHovering = ref(false);
+const offsets = ref([0, 0, 0]);
 
 onMounted(() => {
   Autenticacion.cargarUsuarioDesdeLocalStorage();
   console.log("Usuario cargado en el Header:", usuario.value);
+
+  const canvas = document.getElementById('pawCanvas') as HTMLCanvasElement;
+  if (canvas) {
+    canvas.width = 200;
+    canvas.height = 200;
+    const ctx = canvas.getContext('2d');
+
+    if (ctx) {
+      drawPaw(ctx);
+      canvas.addEventListener('mouseenter', () => {
+        isHovering.value = true;
+        animateRaise(ctx);
+      });
+      canvas.addEventListener('mouseleave', () => {
+        isHovering.value = false;
+        resetPaw(ctx);
+      });
+    }
+  }
 });
 
-const toggleMenu = () => {
-  mostrarMenu.value = !mostrarMenu.value;
-};
-</script>
+function drawPaw(ctx: CanvasRenderingContext2D) {
+  ctx.clearRect(0, 0, 200, 200);
 
+  // Huella grande (Palma)
+  ctx.beginPath();
+  ctx.arc(100, 120, 40, 0, Math.PI * 2);
+  ctx.fillStyle = "#FF5500";
+  ctx.strokeStyle = "#3B2F2F";
+  ctx.lineWidth = 5;
+  ctx.fill();
+  ctx.stroke();
+
+  // Círculo interior en la palma
+  ctx.beginPath();
+  ctx.arc(100, 132, 27, 0, Math.PI * 2);
+  ctx.fillStyle = "whitesmoke";
+  ctx.fill();
+
+  // Dedos
+  drawCircle(ctx, 60, 70 + offsets.value[0], 20);
+  drawCircle(ctx, 100, 60 + offsets.value[1], 22);
+  drawCircle(ctx, 140, 70 + offsets.value[2], 20);
+}
+
+function drawCircle(ctx: CanvasRenderingContext2D, x: number, y: number, r: number) {
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.fillStyle = "#FF5500";
+  ctx.strokeStyle = "#3B2F2F";
+  ctx.lineWidth = 4;
+  ctx.fill();
+  ctx.stroke();
+}
+
+function animateRaise(ctx: CanvasRenderingContext2D) {
+  const maxOffset = -30;
+  let index = 0;
+
+  function raiseStep() {
+    if (!isHovering.value) return;
+
+    if (index < 3) {
+      offsets.value[index] = maxOffset;
+      index++;
+      drawPaw(ctx);
+      setTimeout(raiseStep, 200); // Aumentar el tiempo para hacerlo más lento
+    } else {
+      setTimeout(() => resetPaw(ctx), 600); // También hacer más lento el regreso
+    }
+  }
+
+  raiseStep();
+}
+
+function resetPaw(ctx: CanvasRenderingContext2D) {
+  offsets.value = [0, 0, 0];
+  drawPaw(ctx);
+}
+</script>
 
 <template>
   <main>
     <header>
       <RouterLink to="/">
-        <svg width="100" height="100" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
-          <!-- Huella grande -->
-          <circle cx="100" cy="120" r="40" fill="#FF5500" stroke="#3B2F2F" stroke-width="5" />
-
-          <!-- Dedos -->
-          <circle cx="60" cy="70" r="20" fill="#FF5500" stroke="#3B2F2F" stroke-width="4" />
-          <circle cx="100" cy="60" r="22" fill="#FF5500" stroke="#3B2F2F" stroke-width="4" />
-          <circle cx="140" cy="70" r="20" fill="#FF5500" stroke="#3B2F2F" stroke-width="4" />
-
-          <!-- Círculo interior en la palma -->
-          <circle cx="100" cy="132" r="27" fill="whitesmoke" />
-        </svg>
+        <canvas id="pawCanvas"></canvas>
       </RouterLink>
       <div class="text">
         <nav>
@@ -63,6 +127,7 @@ const toggleMenu = () => {
   </main>
 </template>
 
+
 <style scoped lang="scss">
 /* 🔹 Mobile-First */
 header {
@@ -82,6 +147,12 @@ nav {
   width: 170px;
   gap: 5px;
   justify-content: center;
+}
+
+canvas {
+  display: block;
+  width: 80px;
+  height: 80px;
 }
 
 .usuario-menu {
