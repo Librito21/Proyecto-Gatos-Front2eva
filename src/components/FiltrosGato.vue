@@ -61,7 +61,7 @@ const mostrarTodasRazas = () => {
 <template>
   <v-container fluid class="pa-0">
     <v-sheet rounded="lg" elevation="1" class="mb-4">
-      <div class="filtros-title text-center py-2">Filtros de búsqueda</div>
+      <div class="filtros-title text-center py-2">¿Buscas algo concreto?</div>
       <v-divider></v-divider>
       
       <!-- Panel expandible para filtro por edad -->
