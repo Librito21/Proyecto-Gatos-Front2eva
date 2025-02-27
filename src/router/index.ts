@@ -46,6 +46,9 @@ const router = createRouter({
       component: RegistrarseView,
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    return { top: 0, behavior: 'smooth' }; // Desplazamiento suave al inicio de la página
+  }
 })
 
 export default router
