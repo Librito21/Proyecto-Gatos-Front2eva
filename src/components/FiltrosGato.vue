@@ -101,7 +101,7 @@ const mostrarTodasRazas = () => {
           <v-expansion-panel-text>
             <div class="px-0">
               <div class="filtro-label mt-1 mb-1">Raza del gato</div>
-              <div class="d-flex align-center flex-wrap gap-2">
+              <div class="d-flex align-center flex-wrap gap-2 ResponsiveBoton">
                 <v-select
                   v-model="razaSeleccionada"
                   :items="razasDisponibles"
@@ -227,6 +227,10 @@ const mostrarTodasRazas = () => {
   
   .filtro-label {
     font-size: 0.8125rem;
+  }
+
+  .ResponsiveBoton{
+    gap: 10px;
   }
 }
 </style>
