@@ -39,7 +39,7 @@ const handleRegister = async () => {
     errorMessage.value = '';
 
     setTimeout(() => {
-      window.location.href = '/iniciar-sesion'; // Redirigir al login después de registrar
+      window.location.href = '/iniciar-sesion'; // Redirigir al register después de registrar
     }, 2000);
 
   } catch (error: any) {
@@ -54,40 +54,40 @@ const togglePasswordVisibility = () => {
 </script>
 
 <template>
-  <div class="login-form">
-    <h2 class="login-form__title">Registrarse</h2>
-    <form @submit.prevent="handleRegister" class="login-form__form">
-      <div class="login-form__field">
-        <label for="nombre" class="login-form__label">Usuario</label>
-        <input type="text" v-model="nombre" id="nombre" class="login-form__input" required />
+  <div class="register-form">
+    <h2 class="register-form__title">Registrarse</h2>
+    <form @submit.prevent="handleRegister" class="register-form__form">
+      <div class="register-form__field">
+        <label for="nombre" class="register-form__label">Usuario</label>
+        <input type="text" v-model="nombre" id="nombre" class="register-form__input" required />
       </div>
-      <div class="login-form__field">
-        <label for="email" class="login-form__label">Correo electrónico</label>
-        <input type="email" v-model="email" id="email" class="login-form__input" required />
+      <div class="register-form__field">
+        <label for="email" class="register-form__label">Correo electrónico</label>
+        <input type="email" v-model="email" id="email" class="register-form__input" required />
       </div>
-      <div class="login-form__field">
-        <label for="password" class="login-form__label">Contraseña</label>
-        <div class="login-form__password-wrapper">
+      <div class="register-form__field">
+        <label for="password" class="register-form__label">Contraseña</label>
+        <div class="register-form__password-wrapper">
           <input :type="isPasswordVisible ? 'text' : 'password'" v-model="contraseña" id="contraseña"
-            class="login-form__input" required />
-          <button type="button" @click="togglePasswordVisibility" class="login-form__eye-icon">
+            class="register-form__input" required />
+          <button type="button" @click="togglePasswordVisibility" class="register-form__eye-icon">
             <span v-if="isPasswordVisible">👁️</span>
             <span v-else>👁️‍🗨️</span>
           </button>
         </div>
       </div>
-      <button type="submit" class="login-form__button login-form__button--primary">Registrarse</button>
+      <button type="submit" class="register-form__button register-form__button--primary">Registrarse</button>
     </form>
-    <div v-if="errorMessage" class="login-form__error-message">{{ errorMessage }}</div>
-    <div v-if="successMessage" class="login-form__success-message">{{ successMessage }}</div>
+    <div v-if="errorMessage" class="register-form__error-message">{{ errorMessage }}</div>
+    <div v-if="successMessage" class="register-form__success-message">{{ successMessage }}</div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-/* Estilos idénticos al formulario de login */
-.login-form {
+.register-form {
   max-width: 400px;
   margin: 20px auto;
+  margin-bottom: 50px;
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -95,23 +95,23 @@ const togglePasswordVisibility = () => {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.login-form__title {
+.register-form__title {
   text-align: center;
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
 }
 
-.login-form__field {
+.register-form__field {
   margin-bottom: 1.5rem;
 }
 
-.login-form__label {
+.register-form__label {
   display: block;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
-.login-form__input {
+.register-form__input {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ccc;
@@ -120,10 +120,10 @@ const togglePasswordVisibility = () => {
   box-sizing: border-box;
 }
 
-.login-form__button {
+.register-form__button {
   width: 100%;
   padding: 0.5rem;
-  background-color: #007bff;
+  background-color: #FF5500;
   color: white;
   border: none;
   border-radius: 4px;
@@ -132,42 +132,42 @@ const togglePasswordVisibility = () => {
   transition: background-color 0.3s;
 }
 
-.login-form__button:hover {
-  background-color: #0056b3;
+.register-form__button:hover {
+  background-color: #C54400;
 }
 
-.login-form__button--primary {
-  background-color: #007bff;
+.register-form__button--primary {
+  background-color: #FF5500;
 }
 
-.login-form__button--primary:hover {
-  background-color: #0056b3;
+.register-form__button--primary:hover {
+  background-color: #C54400;
 }
 
-.login-form__error-message {
+.register-form__error-message {
   color: red;
   text-align: center;
   margin-top: 1rem;
   font-size: 0.9rem;
 }
 
-.login-form__success-message {
+.register-form__success-message {
   color: green;
   text-align: center;
   margin-top: 1rem;
   font-size: 0.9rem;
 }
 
-.login-form__password-wrapper {
+.register-form__password-wrapper {
   position: relative;
 }
 
-.login-form__password-wrapper .login-form__input {
+.register-form__password-wrapper .register-form__input {
   width: 100%;
   padding-right: 40px;
 }
 
-.login-form__eye-icon {
+.register-form__eye-icon {
   position: absolute;
   right: 10px;
   top: 50%;
@@ -180,18 +180,18 @@ const togglePasswordVisibility = () => {
   transition: color 0.3s;
 }
 
-.login-form__eye-icon:hover {
+.register-form__eye-icon:hover {
   color: #0056b3;
 }
 
 @media (prefers-color-scheme: dark) {
-  .login-form__title {
+  .register-form__title {
   text-align: center;
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   color: black;
 }
-.login-form__label {
+.register-form__label {
   display: block;
   font-weight: 600;
   margin-bottom: 0.5rem;

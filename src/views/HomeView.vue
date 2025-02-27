@@ -6,7 +6,7 @@ store.findAll();
 </script>
 
 <template>
-  <div class="header">
+  <div class="titulo">
     <h1 class="logo-container">
       AdoptArag
       <svg class="logo-svg" width="40" height="40" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -49,7 +49,7 @@ store.findAll();
 </template>
 
 <style scoped>
-.header {
+.titulo {
   text-align: center;
   margin-bottom: 20px;
   padding: 0 15px;
