@@ -33,6 +33,10 @@ onMounted(() => {
   }
 });
 
+const toggleMenu = () => {
+  mostrarMenu.value = !mostrarMenu.value;
+};
+
 function drawPaw(ctx: CanvasRenderingContext2D) {
   ctx.clearRect(0, 0, 200, 200);
 
