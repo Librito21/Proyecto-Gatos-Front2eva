@@ -1,3 +1,58 @@
+<script setup lang="ts">
+import { ref, computed, onMounted } from "vue";
+import { storeToRefs } from "pinia";
+import { useAutenticacion } from "@/stores/Autentificacion";
+import type GatoDto from "../stores/dtos/gato.dto";
+import type ProtectoraDto from "../stores/dtos/protectoras.dto";
+
+const props = defineProps<{ gato: GatoDto; protectora?: ProtectoraDto }>();
+const autenticacion = useAutenticacion();
+const { usuario } = storeToRefs(autenticacion);
+
+const modal = ref(false);
+const mensaje = ref("");
+
+onMounted(() => {
+  autenticacion.cargarUsuarioDesdeLocalStorage();
+});
+
+const abrirModal = () => {
+  modal.value = true;
+};
+
+const cerrarModal = () => {
+  modal.value = false;
+  mensaje.value = "";
+};
+
+const enviarEmail = async () => {
+  if (!props.protectora || !usuario.value?.Email || !usuario.value?.Id_Usuario) {
+    alert("No se puede enviar el correo. Asegúrate de estar autenticado y que la protectora tenga un email.");
+    return;
+  }
+
+  try {
+    const response = await fetch("https://localhost:7278/api/Usuario/enviar-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        IdUsuario: usuario.value.Id_Usuario,
+        To: props.protectora.email,
+        Subject: `Interesado en adoptar a ${props.gato.nombre_Gato}`,
+        Message: mensaje.value,
+      }),
+    });
+
+    if (!response.ok) throw new Error("Error al enviar el correo");
+
+    alert("Correo enviado con éxito");
+    cerrarModal();
+  } catch (error) {
+    console.error("Error enviando email:", error);
+  }
+};
+</script>
+
 <template>
   <v-card class="CardGatoDetalles">
     <v-img :src="gato.imagen_Gato" cover class="FotoDetallesGato"></v-img>
@@ -10,8 +65,8 @@
       <p><strong>Descripción:</strong> {{ gato.descripcion_Gato }}</p>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="primary" to="/gato">Volver a gatos</v-btn>
-      <v-btn color="green" @click="abrirModal" :disabled="!userEmail || !protectora">
+      <v-btn color= #FF5500 to="/gato">Volver a gatos</v-btn>
+      <v-btn color="green" @click="abrirModal" :disabled="!usuario || !protectora">
         Contactar Protectora
       </v-btn>
     </v-card-actions>
@@ -32,66 +87,6 @@
   </v-card>
 </template>
 
-<script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
-import type GatoDto from "../stores/dtos/gato.dto";
-import type ProtectoraDto from "../stores/dtos/protectoras.dto";
-
-// ✅ Recibimos `gato` y `protectora` correctamente como props
-const props = defineProps<{ gato: GatoDto; protectora?: ProtectoraDto }>();
-
-const user = ref<{ Id_Usuario: number; Email: string } | null>(null);
-const userId = computed(() => user.value?.Id_Usuario || null);
-const userEmail = computed(() => user.value?.Email || null);
-
-const modal = ref(false);
-const mensaje = ref("");
-
-// Cargar usuario desde localStorage al montar el componente
-onMounted(() => {
-  const storedUser = localStorage.getItem("usuario");
-  if (storedUser) {
-    user.value = JSON.parse(storedUser);
-  }
-});
-
-const abrirModal = () => {
-  modal.value = true;
-};
-
-const cerrarModal = () => {
-  modal.value = false;
-  mensaje.value = "";
-};
-
-const enviarEmail = async () => {
-  if (!props.protectora || !userEmail.value || !userId.value) {
-    alert("No se puede enviar el correo. Asegúrate de estar autenticado y que la protectora tenga un email.");
-    return;
-  }
-
-  try {
-    const response = await fetch("https://localhost:7278/api/Usuario/enviar-email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        IdUsuario: userId.value,
-        To: props.protectora.email,
-        Subject: `Interesado en adoptar a ${props.gato.nombre_Gato}`,
-        Message: mensaje.value,
-      }),
-    });
-
-    if (!response.ok) throw new Error("Error al enviar el correo");
-
-    alert("Correo enviado con éxito");
-    cerrarModal();
-  } catch (error) {
-    console.error("Error enviando email:", error);
-  }
-};
-</script>
-
 <style scoped lang="scss">
 .CardGatoDetalles {
   width: 72%;
@@ -106,13 +101,12 @@ const enviarEmail = async () => {
 }
 
 @media (min-width: 620px) {
-
   .CardGatoDetalles {
     width: 50%;
   }
 
   .v-card-actions {
-  flex-direction: row;
-}
+    flex-direction: row;
+  }
 }
 </style>
