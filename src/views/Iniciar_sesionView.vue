@@ -79,6 +79,7 @@ const togglePasswordVisibility = () => {
 .login-form {
   max-width: 400px;
   margin: 20px auto;
+  margin-bottom: 50px;
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -111,10 +112,10 @@ const togglePasswordVisibility = () => {
   box-sizing: border-box;
 }
 
-.login-form__button {
+.login-form__button { 
   width: 100%;
   padding: 0.5rem;
-  background-color: #007bff;
+  background-color: #FF5500;
   color: white;
   border: none;
   border-radius: 4px;
@@ -124,15 +125,15 @@ const togglePasswordVisibility = () => {
 }
 
 .login-form__button:hover {
-  background-color: #0056b3;
+  background-color: #C54400;
 }
 
 .login-form__button--primary {
-  background-color: #007bff;
+  background-color: #FF5500;
 }
 
 .login-form__button--primary:hover {
-  background-color: #0056b3;
+  background-color: #C54400;
 }
 
 .login-form__error-message {

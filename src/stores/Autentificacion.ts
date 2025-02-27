@@ -17,7 +17,6 @@ export const useAutenticacion = defineStore('Autenticacion', {
             const datos = localStorage.getItem('user');
             if (datos) {
                 this.usuario = JSON.parse(datos);
-                //console.log("Usuario cargado en el estado:", this.usuario);
             }
         }
     }
