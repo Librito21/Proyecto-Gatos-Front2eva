@@ -4,6 +4,14 @@ import type GatoDto from './dtos/gato.dto'
 
 export const usegatosStore = defineStore('gatos', () => {
     let gatos = ref<GatoDto[]>([])
+    let gatosFiltrados = ref<GatoDto[]>([])
+    
+    // Estados para los filtros
+    const filtros = ref({
+        edadMin: 1,
+        edadMax: 10,
+        raza: ''
+    })
 
     function findAll() {
         //fetch('https://jsonplaceholder.typicode.com/user')
@@ -16,15 +24,17 @@ export const usegatosStore = defineStore('gatos', () => {
         ]
         gatos.value.splice(0, gatos.value.length, ...data)*/
     }
+    
     function createGato(gato: GatoDto) {
         //fetch(POST)
         //body: JSON.stringify()
-
         gatos.value.push(gato)
+        aplicarFiltros() // Volver a aplicar los filtros cuando se agregue un gato
     }
+    
     function deleteGato() { }
+    
     function updateGato() { }
-
 
     async function fetchGato() {
         try {
@@ -36,21 +46,44 @@ export const usegatosStore = defineStore('gatos', () => {
 
             const data: GatoDto[] = await response.json();
             gatos.value = data;
+            aplicarFiltros() // Aplicar filtros después de cargar los datos
             console.log('Gatos obtenidos:', data);
         } catch (error) {
             console.error('Error al obtener los gatos:', error);
         }
     }
-
-    // REST
-    // create, delete, updated....
+    
+    // Función para actualizar los filtros
+    function actualizarFiltros(nuevosFiltros) {
+        filtros.value = { ...filtros.value, ...nuevosFiltros }
+        aplicarFiltros()
+    }
+    
+    // Función para aplicar los filtros actuales a la lista de gatos
+    function aplicarFiltros() {
+        gatosFiltrados.value = gatos.value.filter(gato => {
+            // Filtrar por edad
+            const edadEnRango = gato.edad >= filtros.value.edadMin && 
+                                gato.edad <= filtros.value.edadMax
+            
+            // Filtrar por raza (si hay una seleccionada)
+            const razaCoincide = filtros.value.raza === '' || 
+                                 gato.raza === filtros.value.raza
+            
+            return edadEnRango && razaCoincide
+        })
+    }
 
     return {
         gatos,
+        gatosFiltrados,
+        filtros,
         findAll,
         createGato,
         deleteGato,
         updateGato,
-        fetchGato
+        fetchGato,
+        actualizarFiltros,
+        aplicarFiltros
     }
 })
