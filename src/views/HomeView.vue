@@ -127,13 +127,14 @@ store.findAll();
 }
 
 /* Responsive styles */
-@media (max-width: 768px) {
+@media (min-width: 1010px) {
   .page-container {
     padding: 0 30px;
   }
   
   .logo-container {
     font-size: 2.8rem;
+    margin-top: 92px;
   }
   
   .quienes-somos {

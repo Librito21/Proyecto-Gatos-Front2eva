@@ -2,9 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import GatoView from '@/views/GatoView.vue'
 import DetallesGatoView from '@/views/DetallesGatoView.vue'
+import FAQ from '@/views/FAQView.vue';
+import PerfilView from '@/views/PerfilView.vue'
+import DeseadosView from '@/views/DeseadosView.vue'
 import Iniciar_sesionView from '@/views/Iniciar_sesionView.vue'
 import RegistrarseView from '@/views/RegistrarseView.vue'
-import FAQ from '@/views/FAQView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +36,16 @@ const router = createRouter({
       path: "/faq",
       name: "FAQ",
       component: FAQ,
+    },
+    {
+      path: '/perfil',
+      name: 'Perfil',
+      component: PerfilView,
+    },
+    {
+      path: '/deseados',
+      name: 'deseados',
+      component: DeseadosView,
     },
     {
       path: '/iniciar-sesion',
