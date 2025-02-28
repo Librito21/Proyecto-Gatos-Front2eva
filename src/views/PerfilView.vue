@@ -45,69 +45,75 @@ const cerrarSesion = () => {
 </script>
 
 <template>
-  <div class="perfil-container" v-if="usuario">
-    <h1>Mi Perfil</h1>
-    <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
-    <p><strong>Email:</strong> {{ usuario.Email }}</p>
-    <p><strong>ID Usuario:</strong> {{ usuario.Id_Usuario }}</p>
-    <p><strong>Fecha de Registro:</strong> {{ usuario.fechaRegistro }}</p>
+  <div class="perfil">
+    <h1 class="perfil__titulo">Mi Perfil</h1>
+    <p class="perfil__dato"><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+    <p class="perfil__dato"><strong>Email:</strong> {{ usuario.Email }}</p>
+    <p class="perfil__dato"><strong>Fecha de Registro:</strong> {{ usuario.fechaRegistro }}</p>
 
-    <div class="cambiar-contrasena">
-      <h2>Cambiar Contraseña</h2>
-      <input v-model="nuevaContrasena" type="password" placeholder="Nueva contraseña" />
-      <button @click="cambiarContrasena">Actualizar</button>
-      <p v-if="mensaje">{{ mensaje }}</p>
+    <div class="perfil__cambiar-contrasena">
+      <h2 class="perfil__subtitulo">Cambiar Contraseña</h2>
+      <input class="perfil__input" v-model="nuevaContrasena" type="password" placeholder="Nueva contraseña" />
+      <button class="perfil__boton" @click="cambiarContrasena">Actualizar</button>
+      <p class="perfil__mensaje" v-if="mensaje">{{ mensaje }}</p>
     </div>
 
-    <button class="logout-btn" @click="cerrarSesion">Cerrar Sesión</button>
+    <button class="perfil__boton perfil__boton--rojo" @click="cerrarSesion">Cerrar Sesión</button>
   </div>
 </template>
 
-<style scoped>
-.perfil-container {
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
+<style scoped lang="scss">
+.perfil {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
+.perfil__titulo, .perfil__subtitulo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.perfil__dato {
+  margin-bottom: 10px;
+}
+
+.perfil__cambiar-contrasena {
+  margin-top: 30px;
   text-align: center;
 }
 
-.cambiar-contrasena {
-  margin-top: 20px;
-  text-align: center;
-}
-
-input {
+.perfil__input {
   width: 100%;
-  padding: 8px;
-  margin-top: 10px;
+  padding: 12px;
+  margin-top: 15px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
-button {
+.perfil__boton {
   width: 100%;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 12px;
+  margin-top: 15px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 16px;
 }
 
-button:hover {
+.perfil__boton:hover {
   background-color: #0056b3;
 }
 
-.logout-btn {
+.perfil__boton--rojo {
   background-color: red;
-  margin-top: 20px;
+  margin-top: 30px;
+  font-size: 18px;
 }
 </style>
