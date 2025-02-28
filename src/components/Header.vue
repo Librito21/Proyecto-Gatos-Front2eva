@@ -115,15 +115,15 @@ function resetPaw(ctx: CanvasRenderingContext2D) {
           </template>
           <template v-else>
             <div class="usuario-menu">
-              <svg @click="toggleMenu" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg @click="toggleMenu" width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="12" cy="8" r="4" fill="#FF5500" stroke="#3B2F2F" stroke-width="2" />
                 <path d="M4 20C4 16.6863 7.58172 14 12 14C16.4183 14 20 16.6863 20 20" stroke="#3B2F2F" stroke-width="2" />
               </svg>
               <div v-if="mostrarMenu" class="datos-usuario">
-                Hola
-                <RouterLink to="/perfil"><span>Mi Perfil</span></RouterLink>
-                <RouterLink to="/perfil"><span>❤️ Deseados</span></RouterLink>
-                <button class="logout-btn" @click="Autenticacion.cerrarSesion">Cerrar sesión</button>
+                <p>Hola {{ usuario.nombre }}</p>
+                <RouterLink to="/perfil" class="boton-1"><span>Mi Perfil</span></RouterLink>
+                <RouterLink to="/perfil" class="boton-2"><span>❤️ Deseados</span></RouterLink>
+                <RouterLink to="/"><button class="logout-btn" @click="Autenticacion.cerrarSesion">Cerrar sesión</button></RouterLink>
               </div>
             </div>
           </template>
@@ -180,10 +180,18 @@ canvas {
   background: white;
   padding: 10px;
   
-  & a {
+  & .boton-1 {
     background-color: #FF5500;
     color: white;
-    margin-bottom: 15px;
+    margin: 15px 0;
+    padding: 10px 15px;
+    border-radius: 10px;
+  }
+
+  & .boton-2 {
+    background-color: #FF5500;
+    color: white;
+    margin-bottom: 10px;
     padding: 10px 15px;
     border-radius: 10px;
   }
@@ -214,6 +222,7 @@ canvas {
     flex-grow: 1;
     display: flex;
     justify-content: start;
+    align-items: center;
   }
 
   .usuario {
@@ -237,8 +246,8 @@ canvas {
   }
 
   svg {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
   }
 
   nav {
