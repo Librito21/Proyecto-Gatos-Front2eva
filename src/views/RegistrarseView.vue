@@ -4,15 +4,23 @@ import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 
 const nombre = ref('');
+const apellido = ref('');
 const email = ref('');
 const contraseña = ref('');
+const confirmarContraseña = ref('');
 const errorMessage = ref('');
 const successMessage = ref('');
 const isPasswordVisible = ref(false);
+const isConfirmPasswordVisible = ref(false);
 
 const handleRegister = async () => {
-  if (!nombre.value || !email.value || !contraseña.value) {
+  if (!nombre.value || !apellido.value || !email.value || !contraseña.value || !confirmarContraseña.value) {
     errorMessage.value = 'Todos los campos son obligatorios';
+    return;
+  }
+
+  if (contraseña.value !== confirmarContraseña.value) {
+    errorMessage.value = 'Las contraseñas no coinciden';
     return;
   }
 
@@ -39,7 +47,7 @@ const handleRegister = async () => {
     errorMessage.value = '';
 
     setTimeout(() => {
-      window.location.href = '/iniciar-sesion'; // Redirigir al register después de registrar
+      window.location.href = '/iniciar-sesion'; // Redirigir al login después de registrar
     }, 2000);
 
   } catch (error: any) {
@@ -51,6 +59,10 @@ const handleRegister = async () => {
 const togglePasswordVisibility = () => {
   isPasswordVisible.value = !isPasswordVisible.value;
 };
+
+const toggleConfirmPasswordVisibility = () => {
+  isConfirmPasswordVisible.value = !isConfirmPasswordVisible.value;
+};
 </script>
 
 <template>
@@ -58,8 +70,12 @@ const togglePasswordVisibility = () => {
     <h2 class="register-form__title">Registrarse</h2>
     <form @submit.prevent="handleRegister" class="register-form__form">
       <div class="register-form__field">
-        <label for="nombre" class="register-form__label">Usuario</label>
+        <label for="nombre" class="register-form__label">Nombre</label>
         <input type="text" v-model="nombre" id="nombre" class="register-form__input" required />
+      </div>
+      <div class="register-form__field">
+        <label for="nombre" class="register-form__label">Apellidos</label>
+        <input type="text" v-model="apellido" id="nombre" class="register-form__input" required />
       </div>
       <div class="register-form__field">
         <label for="email" class="register-form__label">Correo electrónico</label>
@@ -74,6 +90,17 @@ const togglePasswordVisibility = () => {
             <span v-if="isPasswordVisible">👁️</span>
             <span v-else>👁️‍🗨️</span>
           </button>
+        </div>
+        <div class="register-form__field">
+          <label for="confirmar-password" class="register-form__label">Confirmar Contraseña</label>
+          <div class="register-form__password-wrapper">
+            <input :type="isConfirmPasswordVisible ? 'text' : 'password'" v-model="confirmarContraseña"
+              id="confirmar-password" class="register-form__input" required />
+            <button type="button" @click="toggleConfirmPasswordVisibility" class="register-form__eye-icon">
+              <span v-if="isConfirmPasswordVisible">👁️</span>
+              <span v-else>👁️‍🗨️</span>
+            </button>
+          </div>
         </div>
       </div>
       <button type="submit" class="register-form__button register-form__button--primary">Registrarse</button>
@@ -186,22 +213,23 @@ const togglePasswordVisibility = () => {
 
 @media (prefers-color-scheme: dark) {
   .register-form__title {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  color: black;
-}
-.register-form__label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: black;
-}
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: black;
+  }
+
+  .register-form__label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: black;
+  }
 }
 
-@media (width <= 400px) {
+@media (width <=400px) {
 
-  .register-form{
+  .register-form {
     margin-left: 15px;
     margin-right: 15px;
   }
