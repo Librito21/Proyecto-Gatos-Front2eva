@@ -75,23 +75,25 @@ export const usegatosStore = defineStore('gatos', () => {
         })
     }
 
-    const obtenerGatosDeseados = async () => {
+    async function obtenerGatosDeseados() {
         try {
-          const response = await fetch('https://localhost:7278/api/Deseado');
-          if (!response.ok) {
-            throw new Error('Error al obtener los gatos deseados');
-          }
-          const data = await response.json();
-          gatosDeseados.value = Array.isArray(data) ? data : [];
+            const response = await fetch('https://localhost:7278/api/Deseado');
+            if (!response.ok) {
+                throw new Error('Error al obtener los gatos deseados');
+            }
+            const data = await response.json();
+            console.log('Datos obtenidos de la API (deseados):', data);
+            gatosDeseados.value = Array.isArray(data) ? data : [];
         } catch (error) {
-            console.error('Error al obtener los gatos:', error);
+            console.error('Error al obtener los gatos deseados:', error);
         }
-      };
+    }
 
     return {
         gatos,
         gatosFiltrados,
         filtros,
+        gatosDeseados,
         findAll,
         createGato,
         deleteGato,
