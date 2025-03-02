@@ -5,6 +5,7 @@ import type GatoDto from './dtos/gato.dto'
 export const usegatosStore = defineStore('gatos', () => {
     let gatos = ref<GatoDto[]>([])
     let gatosFiltrados = ref<GatoDto[]>([])
+    let gatosDeseados = ref<GatoDto[]>([]);
     
     // Estados para los filtros
     const filtros = ref({
@@ -74,6 +75,19 @@ export const usegatosStore = defineStore('gatos', () => {
         })
     }
 
+    const obtenerGatosDeseados = async () => {
+        try {
+          const response = await fetch('https://localhost:7278/api/Deseado');
+          if (!response.ok) {
+            throw new Error('Error al obtener los gatos deseados');
+          }
+          const data = await response.json();
+          gatosDeseados.value = Array.isArray(data) ? data : [];
+        } catch (error) {
+            console.error('Error al obtener los gatos:', error);
+        }
+      };
+
     return {
         gatos,
         gatosFiltrados,
@@ -84,6 +98,7 @@ export const usegatosStore = defineStore('gatos', () => {
         updateGato,
         fetchGato,
         actualizarFiltros,
-        aplicarFiltros
+        aplicarFiltros,
+        obtenerGatosDeseados
     }
 })

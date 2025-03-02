@@ -6,10 +6,8 @@ import { computed, ref } from 'vue'
 
 const store = usegatosStore()
 
-// Cargar los gatos al inicio
 store.fetchGato()
 
-// Estados para los filtros
 const edadMin = ref(1)
 const edadMax = ref(10)
 const razaSeleccionada = ref('')
@@ -63,7 +61,6 @@ const gatosFiltrados = computed(() => {
 </template>
 
 <style scoped>
-/* Espacio adicional después de los filtros */
 .v-row + .v-row {
   margin-top: 8px;
 }
@@ -80,7 +77,6 @@ const gatosFiltrados = computed(() => {
   justify-content: center;
 }
 
-/* Sobrescribir colores primarios de la aplicación para coincidir con #FF5500 */
 :deep(.v-btn.primary),
 :deep(.v-alert.info) {
   background-color: #FF5500 !important;
