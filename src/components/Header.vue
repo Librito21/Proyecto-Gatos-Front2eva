@@ -122,7 +122,7 @@ function resetPaw(ctx: CanvasRenderingContext2D) {
               <div v-if="mostrarMenu" class="datos-usuario">
                 <p>Hola {{ usuario.nombre }}</p>
                 <RouterLink to="/perfil" class="boton-1"><span>Mi Perfil</span></RouterLink>
-                <RouterLink to="/perfil" class="boton-2"><span>❤️ Deseados</span></RouterLink>
+                <RouterLink to="/deseados" class="boton-2"><span>❤️ Deseados</span></RouterLink>
                 <RouterLink to="/"><button class="logout-btn" @click="Autenticacion.cerrarSesion">Cerrar sesión</button></RouterLink>
               </div>
             </div>

@@ -27,6 +27,6 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .Imagen-gato :deep(.v-img__img--contain) {
-  object-fit: cover;
+  object-fit: fill;
 }
 </style>
