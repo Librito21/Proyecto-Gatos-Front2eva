@@ -2,22 +2,23 @@ import { defineStore } from 'pinia';
 
 export const useAutenticacion = defineStore('Autenticacion', {
     state: () => ({
-        usuario: null as any | null
+        usuario: null,
     }),
+    getters: {
+        esAutenticado: (state) => !!state.usuario,
+    },
     actions: {
         iniciarSesion(datosUsuario: any) {
             this.usuario = datosUsuario;
-            localStorage.setItem('user', JSON.stringify(datosUsuario));
         },
         cerrarSesion() {
             this.usuario = null;
-            localStorage.removeItem('user');
         },
         cargarUsuarioDesdeLocalStorage() {
-            const datos = localStorage.getItem('user');
-            if (datos) {
-                this.usuario = JSON.parse(datos);
+            const usuario = localStorage.getItem('user');
+            if (usuario) {
+                this.usuario = JSON.parse(usuario);
             }
-        }
-    }
+        },
+    },
 });

@@ -7,6 +7,7 @@ import PerfilView from '@/views/PerfilView.vue'
 import DeseadosView from '@/views/DeseadosView.vue'
 import Iniciar_sesionView from '@/views/Iniciar_sesionView.vue'
 import RegistrarseView from '@/views/RegistrarseView.vue'
+import { useAutenticacion } from '@/stores/Autentificacion';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,6 +47,9 @@ const router = createRouter({
       path: '/deseados',
       name: 'deseados',
       component: DeseadosView,
+      meta: {
+        requiresAuth: true
+        }
     },
     {
       path: '/iniciar-sesion',
@@ -60,6 +64,16 @@ const router = createRouter({
   ],
   scrollBehavior(to, from, savedPosition) {
     return { top: 0, behavior: 'smooth' }; // Desplazamiento suave al inicio de la página
+  }
+})
+
+router.beforeEach((to, from, next) => {
+  const autenticacionStore = useAutenticacion()
+  
+  if (to.meta.requiresAuth && !autenticacionStore.esAutenticado) {
+    next('/iniciar-sesion') 
+  } else {
+    next()
   }
 })
 

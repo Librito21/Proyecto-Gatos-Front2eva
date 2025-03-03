@@ -83,11 +83,24 @@ export const usegatosStore = defineStore('gatos', () => {
             }
             const data = await response.json();
             console.log('Datos obtenidos de la API (deseados):', data);
-            gatosDeseados.value = Array.isArray(data) ? data : [];
+    
+            // Ahora necesitamos obtener la información completa de cada gato
+            const gatosCompletos = await Promise.all(
+                data.map(async (deseado: any) => {
+                    const gatoResponse = await fetch(`https://localhost:7278/api/Gato/${deseado.id_Gato}`);
+                    if (!gatoResponse.ok) {
+                        throw new Error(`Error al obtener el gato con id ${deseado.id_Gato}`);
+                    }
+                    return await gatoResponse.json();
+                })
+            );
+    
+            gatosDeseados.value = gatosCompletos;
         } catch (error) {
             console.error('Error al obtener los gatos deseados:', error);
         }
     }
+    
 
     return {
         gatos,
