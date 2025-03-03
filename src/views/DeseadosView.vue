@@ -8,8 +8,8 @@ const gatosStore = usegatosStore();
 const gatosDeseados = computed(() => gatosStore.gatosDeseados);
 
 onMounted(async () => {
-    await gatosStore.obtenerGatosDeseados();
-    console.log('Gatos deseados al montar la vista:', gatosDeseados.value);
+  await gatosStore.obtenerGatosDeseados();
+  console.log('Gatos deseados al montar la vista:', gatosDeseados.value);
 });
 </script>
 
@@ -18,7 +18,7 @@ onMounted(async () => {
     <h1 class="deseados__titulo">Mis Gatos Deseados</h1>
     <p v-if="gatosDeseados.length === 0" class="deseados__mensaje">No tienes gatos en tu lista de deseados.</p>
     <div v-else class="deseados__lista">
-      <GatoCard v-for="gato in gatosDeseados" :key="gato.id_Gato" :gato="gato" />
+      <GatoCard v-for="gato in gatosDeseados" :key="gato.id_Gato" :gato="gato" style="width: 400px; height: 338px;"/>
     </div>
   </div>
 </template>

@@ -8,28 +8,28 @@ const autenticacion = useAutenticacion();
 const { usuario } = storeToRefs(autenticacion);
 const router = useRouter();
 const nuevaContraseña = ref('');
-const repetirContrasena = ref('');
+const repetirContraseña = ref('');
 const mensaje = ref('');
 
 onMounted(() => {
   autenticacion.cargarUsuarioDesdeLocalStorage();
+  console.log("Usuario en el perfil:", usuario.value);
 });
 
 const cambiarContraseña = async () => {
-  if (!nuevaContraseña.value || !repetirContrasena.value) {
+  if (!nuevaContraseña.value || !repetirContraseña.value) {
     mensaje.value = 'Introduce y repite la nueva contraseña';
     return;
   }
-  if (nuevaContraseña.value !== repetirContrasena.value) {
+  if (nuevaContraseña.value !== repetirContraseña.value) {
     mensaje.value = 'Las contraseñas no coinciden';
     return;
   }
   try {
-    const response = await fetch('https://localhost:7278/api/Usuario', {
+    const response = await fetch(`https://localhost:7278/api/Usuario/${usuario.value?.userId}/cambiar-contraseña`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        idUsuario: usuario.value?.Id_Usuario,
         nuevaContraseña: nuevaContraseña.value
       })
     });
@@ -37,7 +37,7 @@ const cambiarContraseña = async () => {
     if (!response.ok) throw new Error('Error al cambiar la contraseña');
     mensaje.value = 'Contraseña actualizada con éxito';
     nuevaContraseña.value = '';
-    repetirContrasena.value = '';
+    repetirContraseña.value = '';
   } catch (error) {
     mensaje.value = 'Error al cambiar la contraseña';
     console.error(error);
@@ -54,13 +54,13 @@ const cerrarSesion = () => {
   <div class="perfil">
     <h1 class="perfil__titulo">Mi Perfil</h1>
     <p class="perfil__dato"><strong>Nombre:</strong> {{ usuario.nombre }}</p>
-    <p class="perfil__dato"><strong>Apellido:</strong> {{ usuario.apellido }}</p>
-    <p class="perfil__dato"><strong>Email:</strong> {{ usuario.email }}</p>
+    <p class="perfil__dato"><strong>Email:</strong> {{ usuario.Email }}</p>
+    <p class="perfil__dato"><strong>Fecha de Registro:</strong> {{ usuario.fechaRegistro }}</p>
 
     <div class="perfil__cambiar-contrasena">
       <h2 class="perfil__subtitulo">Cambiar Contraseña</h2>
       <input class="perfil__input" v-model="nuevaContraseña" type="password" placeholder="Nueva contraseña" />
-      <input class="perfil__input" v-model="repetirContrasena" type="password" placeholder="Repite la contraseña" />
+      <input class="perfil__input" v-model="repetirContraseña" type="password" placeholder="Repite la contraseña" />
       <button class="perfil__boton" @click="cambiarContraseña">Actualizar</button>
       <p class="perfil__mensaje" v-if="mensaje">{{ mensaje }}</p>
     </div>
@@ -69,12 +69,11 @@ const cerrarSesion = () => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .perfil {
   width: 90%;
   max-width: 400px;
   margin: 20px auto;
-  margin-bottom: 40px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -108,12 +107,16 @@ const cerrarSesion = () => {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
-  background-color: #FF5500;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
+}
+
+.perfil__boton:hover {
+  background-color: #0056b3;
 }
 
 .perfil__boton--rojo {

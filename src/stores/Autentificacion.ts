@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useAutenticacion = defineStore('Autenticacion', {
     state: () => ({
-        usuario: null,
+        usuario: null as any,
     }),
     getters: {
         esAutenticado: (state) => !!state.usuario,
@@ -13,6 +13,7 @@ export const useAutenticacion = defineStore('Autenticacion', {
         },
         cerrarSesion() {
             this.usuario = null;
+            localStorage.removeItem('user');
         },
         cargarUsuarioDesdeLocalStorage() {
             const usuario = localStorage.getItem('user');
