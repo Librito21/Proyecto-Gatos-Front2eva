@@ -54,8 +54,8 @@ const cerrarSesion = () => {
   <div class="perfil">
     <h1 class="perfil__titulo">Mi Perfil</h1>
     <p class="perfil__dato"><strong>Nombre:</strong> {{ usuario.nombre }}</p>
-    <p class="perfil__dato"><strong>Email:</strong> {{ usuario.Email }}</p>
-    <p class="perfil__dato"><strong>Fecha de Registro:</strong> {{ usuario.fechaRegistro }}</p>
+    <p class="perfil__dato"><strong>Apellido:</strong> {{ usuario.apellido }}</p>
+    <p class="perfil__dato"><strong>Email:</strong> {{ usuario.email }}</p>
 
     <div class="perfil__cambiar-contrasena">
       <h2 class="perfil__subtitulo">Cambiar Contraseña</h2>
@@ -113,10 +113,6 @@ const cerrarSesion = () => {
   border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
-}
-
-.perfil__boton:hover {
-  background-color: #0056b3;
 }
 
 .perfil__boton--rojo {

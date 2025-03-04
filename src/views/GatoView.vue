@@ -9,7 +9,7 @@ const store = usegatosStore()
 store.fetchGato()
 
 const edadMin = ref(1)
-const edadMax = ref(10)
+const edadMax = ref(15)
 const razaSeleccionada = ref('')
 
 // Función para actualizar los filtros desde el componente hijo
@@ -54,7 +54,7 @@ const gatosFiltrados = computed(() => {
       
       <!-- Mostrar los gatos filtrados -->
       <v-col v-for="gato in gatosFiltrados" :key="gato.id_Gato" cols="12" sm="6" md="4" lg="3">
-        <GatoCard :gato="gato" />
+        <GatoCard :gato="gato" style="object-fit: cover;"/>
       </v-col>
     </v-row>
   </v-container>

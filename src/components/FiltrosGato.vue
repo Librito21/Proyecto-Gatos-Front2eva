@@ -3,8 +3,8 @@ import { ref, watch } from 'vue'
 
 // Definir el rango de edad
 const edadMin = ref(1)
-const edadMax = ref(10)
-const rangoEdad = ref([1, 10])
+const edadMax = ref(15)
+const rangoEdad = ref([1, 15])
 
 // Sincronizar rangoEdad con edadMin y edadMax
 watch(rangoEdad, (newVal) => {
@@ -79,7 +79,7 @@ const mostrarTodasRazas = () => {
                 <v-range-slider
                   v-model="rangoEdad"
                   min="1"
-                  max="10"
+                  max="15"
                   step="1"
                   color="#FF5500"
                   thumb-label="always"

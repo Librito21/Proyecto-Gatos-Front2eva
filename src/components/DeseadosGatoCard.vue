@@ -26,7 +26,7 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .gato-card__imagen :deep(.v-img__img--contain) {
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .gato-card__mensaje {

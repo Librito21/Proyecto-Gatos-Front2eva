@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue';
 import { usegatosStore } from '@/stores/gatos';
-import GatoCard from '@/components/GatoCard.vue';
+import DeseadosGatoCard from '@/components/DeseadosGatoCard.vue';
 
 // Obtener la store
 const gatosStore = usegatosStore();
@@ -18,7 +18,7 @@ onMounted(async () => {
     <h1 class="deseados__titulo">Mis Gatos Deseados</h1>
     <p v-if="gatosDeseados.length === 0" class="deseados__mensaje">No tienes gatos en tu lista de deseados.</p>
     <div v-else class="deseados__lista">
-      <GatoCard v-for="gato in gatosDeseados" :key="gato.id_Gato" :gato="gato" style="width: 400px; height: 338px;" />
+      <DeseadosGatoCard v-for="gato in gatosDeseados" :key="gato.id_Gato" :gato="gato" @eliminarGato="eliminarGato" />
     </div>
   </div>
 </template>
@@ -38,7 +38,7 @@ onMounted(async () => {
 
 .deseados__lista {
   display: grid;
-  grid-template-columns: 1fr; 
+  grid-template-columns: 1fr;
   gap: 20px;
   justify-items: center;
 }
