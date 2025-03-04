@@ -27,6 +27,7 @@ onMounted(async () => {
 .deseados {
   max-width: 800px;
   margin: 20px auto;
+  margin-top: 95px;
   padding: 20px;
   text-align: center;
 }
