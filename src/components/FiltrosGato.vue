@@ -19,7 +19,9 @@ const razasDisponibles = [
   'Tuxedo',
   'Blanco',
   'Naranja y negro',
-  'Blanco y pardo'
+  'Blanco y pardo',
+  'Negro',
+  'Siames'
 ]
 
 // Estados para los filtros seleccionados
