@@ -25,9 +25,8 @@ onMounted(async () => {
 
 <style scoped>
 .deseados {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 20px auto;
-  margin-top: 95px;
   padding: 20px;
   text-align: center;
 }
@@ -39,12 +38,31 @@ onMounted(async () => {
 
 .deseados__lista {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr; 
   gap: 20px;
+  justify-items: center;
 }
 
-.deseados__mensaje {
-  font-size: 1.2rem;
-  color: #555;
+.gato-card {
+  width: 90%;
+  max-width: 400px;
+  height: 338px;
+}
+
+@media (min-width: 600px) {
+  .deseados__lista {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .deseados {
+    max-width: 1200px;
+    margin-top: 95px;
+  }
+
+  .deseados__lista {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 </style>
