@@ -18,14 +18,14 @@ onMounted(async () => {
     <h1 class="deseados__titulo">Mis Gatos Deseados</h1>
     <p v-if="gatosDeseados.length === 0" class="deseados__mensaje">No tienes gatos en tu lista de deseados.</p>
     <div v-else class="deseados__lista">
-      <GatoCard v-for="gato in gatosDeseados" :key="gato.id_Gato" :gato="gato" style="width: 400px; height: 338px;"/>
+      <GatoCard v-for="gato in gatosDeseados" :key="gato.id_Gato" :gato="gato" style="width: 400px; height: 338px;" />
     </div>
   </div>
 </template>
 
 <style scoped>
 .deseados {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 20px auto;
   margin-top: 95px;
   padding: 20px;
@@ -39,7 +39,7 @@ onMounted(async () => {
 
 .deseados__lista {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
