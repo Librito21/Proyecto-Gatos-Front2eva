@@ -71,7 +71,7 @@ const gatosFiltrados = computed(() => {
 }
 
 .NoFiltro {
-  background-color: #FF5500;
+  background-color: $color-principal;
   max-width: 500px;
   display: flex;
   justify-content: center;
@@ -79,8 +79,8 @@ const gatosFiltrados = computed(() => {
 
 :deep(.v-btn.primary),
 :deep(.v-alert.info) {
-  background-color: #FF5500 !important;
-  border-color: #FF5500 !important;
+  background-color: $color-principal !important;
+  border-color: $color-principal !important;
 }
 
 </style>

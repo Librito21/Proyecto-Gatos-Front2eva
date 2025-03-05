@@ -115,7 +115,7 @@ const cerrarSesion = () => {
     font-size: 16px;
 
     &--rojo {
-      background-color: red;
+      background-color: $color-rojo;
       margin-top: 20px;
       font-size: 18px;
     }

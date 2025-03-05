@@ -168,7 +168,7 @@ const mostrarTodasRazas = () => {
 /* Definir el color naranja personalizado */
 .v-btn {
   &.naranja {
-    background-color: #FF5500 !important;
+    background-color: $color-principal !important;
     color: white !important;
     border: none !important;
   }
@@ -178,8 +178,8 @@ const mostrarTodasRazas = () => {
   &.naranja {
     .v-slider-track__fill,
     .v-slider-thumb__surface {
-      background-color: #FF5500 !important;
-      border-color: #FF5500 !important;
+      background-color: $color-principal !important;
+      border-color: $color-principal !important;
     }
   }
 }
@@ -192,11 +192,11 @@ const mostrarTodasRazas = () => {
 
   :deep(.v-expansion-panel-title--active),
   :deep(.v-expansion-panel-title:hover) {
-    color: #FF5500 !important;
+    color: $color-principal !important;
   }
 
   :deep(.v-expansion-panel-title__icon .v-icon) {
-    color: #FF5500 !important;
+    color: $color-principal !important;
   }
 
   :deep(.v-expansion-panel) {

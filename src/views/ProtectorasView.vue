@@ -30,7 +30,7 @@ store.fetchProtectora();
   h1 {
     font-size: 1.6rem;
     margin-bottom: 15px;
-    color: #FF5500;
+    color: $color-principal;
   }
 }
 

@@ -114,7 +114,7 @@ const togglePasswordVisibility = () => {
   &__button {
     width: 100%;
     padding: 0.5rem;
-    background-color: #FF5500;
+    background-color: $color-principal;
     color: white;
     border: none;
     border-radius: 4px;
@@ -123,20 +123,20 @@ const togglePasswordVisibility = () => {
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: #C54400;
+      background-color: $color-principal-oscuro;
     }
 
     &--primary {
-      background-color: #FF5500;
+      background-color: $color-principal;
 
       &:hover {
-        background-color: #C54400;
+        background-color: $color-principal-oscuro;
       }
     }
   }
 
   &__error-message {
-    color: red;
+    color: $color-rojo;
     text-align: center;
     margin-top: 1rem;
     font-size: 0.9rem;

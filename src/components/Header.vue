@@ -137,9 +137,7 @@ function resetPaw(ctx: CanvasRenderingContext2D) {
 <style scoped lang="scss">
 /* 🔹 Mobile-First */
 header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include center-flex;
   padding: 10px 15px;
   width: 100%;
 }
@@ -180,7 +178,7 @@ canvas {
     padding: 10px;
 
     & .boton-1 {
-      background-color: #FF5500;
+      background-color: $color-principal;
       color: white;
       margin: 15px 0;
       padding: 10px 15px;
@@ -188,7 +186,7 @@ canvas {
     }
 
     & .boton-2 {
-      background-color: #FF5500;
+      background-color: $color-principal;
       color: white;
       margin-bottom: 10px;
       padding: 10px 15px;
@@ -199,7 +197,7 @@ canvas {
 
 .logout-btn {
   margin-top: 5px;
-  background: red;
+  background: $color-rojo;
   color: white;
   border: none;
   padding: 5px 10px;

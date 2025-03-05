@@ -93,7 +93,7 @@ import { RouterLink } from 'vue-router'
 }
 
 .highlight {
-  color: #FF5500;
+  color: $color-principal;
   font-weight: bold;
 }
 
@@ -102,7 +102,7 @@ import { RouterLink } from 'vue-router'
 }
 
 .cta-button {
-  background-color: #FF5500;
+  background-color: $color-principal;
   color: #EEEEEE;
   font-size: 1.2rem;
   font-weight: bold;
