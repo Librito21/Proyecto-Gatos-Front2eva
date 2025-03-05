@@ -18,35 +18,35 @@ onMounted(async () => {
     <h1 class="deseados__titulo">Mis Gatos Deseados</h1>
     <p v-if="gatosDeseados.length === 0" class="deseados__mensaje">No tienes gatos en tu lista de deseados.</p>
     <div v-else class="deseados__lista">
-      <DeseadosGatoCard v-for="gato in gatosDeseados" :key="gato.id_Gato" :gato="gato" @eliminarGato="eliminarGato" />
+      <DeseadosGatoCard v-for="gato in gatosDeseados" :key="gato.id_Gato" :gato="gato"/>
     </div>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .deseados {
   max-width: 100%;
   margin: 20px auto;
   padding: 20px;
   text-align: center;
-}
 
-.deseados__titulo {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
+  &__titulo {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
 
-.deseados__lista {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  justify-items: center;
-}
+  &__lista {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    justify-items: center;
+  }
 
-.gato-card {
-  width: 90%;
-  max-width: 400px;
-  height: 338px;
+  .gato-card {
+    width: 90%;
+    max-width: 400px;
+    height: 338px;
+  }
 }
 
 @media (min-width: 600px) {
@@ -65,4 +65,5 @@ onMounted(async () => {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
 </style>

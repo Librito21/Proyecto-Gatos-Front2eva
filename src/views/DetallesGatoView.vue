@@ -1,15 +1,3 @@
-<template>
-  <v-container>
-    <v-row justify="center">
-      <v-col cols="12" md="8" class="ContainerDetallesGatos">
-        <DetallesGatoCard v-if="gato" :gato="gato" :protectora="protectora" />
-        <v-alert v-else-if="cargando" type="info">Cargando...</v-alert>
-        <v-alert v-else type="error">No se encontró el gato.</v-alert>
-      </v-col>
-    </v-row>
-  </v-container>
-</template>
-
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
@@ -52,6 +40,18 @@ onMounted(() => {
 
 watch(() => route.params.id, obtenerGato);
 </script>
+
+<template>
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="12" md="8" class="ContainerDetallesGatos">
+        <DetallesGatoCard v-if="gato" :gato="gato" :protectora="protectora" />
+        <v-alert v-else-if="cargando" type="info">Cargando...</v-alert>
+        <v-alert v-else type="error">No se encontró el gato.</v-alert>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
 
 <style scoped lang="scss">
 

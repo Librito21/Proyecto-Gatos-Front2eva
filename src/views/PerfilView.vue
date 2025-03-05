@@ -69,7 +69,7 @@ const cerrarSesion = () => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .perfil {
   width: 90%;
   max-width: 400px;
@@ -79,46 +79,47 @@ const cerrarSesion = () => {
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
 
-.perfil__titulo, .perfil__subtitulo {
-  text-align: center;
-  margin-bottom: 15px;
-}
+  &__titulo,
+  &__subtitulo {
+    text-align: center;
+    margin-bottom: 15px;
+  }
 
-.perfil__dato {
-  margin-bottom: 10px;
-}
+  &__dato {
+    margin-bottom: 10px;
+  }
 
-.perfil__cambiar-contrasena {
-  margin-top: 20px;
-  text-align: center;
-}
+  &__cambiar-contrasena {
+    margin-top: 20px;
+    text-align: center;
+  }
 
-.perfil__input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
+  &__input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
 
-.perfil__boton {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-}
+  &__boton {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
 
-.perfil__boton--rojo {
-  background-color: red;
-  margin-top: 20px;
-  font-size: 18px;
+    &--rojo {
+      background-color: red;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  }
 }
 
 @media (min-width: 768px) {
@@ -132,4 +133,5 @@ const cerrarSesion = () => {
     font-size: 18px;
   }
 }
+
 </style>

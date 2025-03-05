@@ -120,119 +120,112 @@ const toggleConfirmPasswordVisibility = () => {
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
 
-.register-form__title {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-}
-
-.register-form__field {
-  margin-bottom: 1.5rem;
-}
-
-.register-form__label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.register-form__input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  box-sizing: border-box;
-}
-
-.register-form__button {
-  width: 100%;
-  padding: 0.5rem;
-  background-color: #FF5500;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.register-form__button:hover {
-  background-color: #C54400;
-}
-
-.register-form__button--primary {
-  background-color: #FF5500;
-}
-
-.register-form__button--primary:hover {
-  background-color: #C54400;
-}
-
-.register-form__error-message {
-  color: red;
-  text-align: center;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-}
-
-.register-form__success-message {
-  color: green;
-  text-align: center;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-}
-
-.register-form__password-wrapper {
-  position: relative;
-}
-
-.register-form__password-wrapper .register-form__input {
-  width: 100%;
-  padding-right: 40px;
-}
-
-.register-form__eye-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-  color: #007bff;
-  transition: color 0.3s;
-}
-
-.register-form__eye-icon:hover {
-  color: #0056b3;
-}
-
-@media (prefers-color-scheme: dark) {
   .register-form__title {
     text-align: center;
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
-    color: black;
+  }
+
+  .register-form__field {
+    margin-bottom: 1.5rem;
   }
 
   .register-form__label {
     display: block;
     font-weight: 600;
     margin-bottom: 0.5rem;
+  }
+
+  .register-form__input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  .register-form__button {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #FF5500;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #C54400;
+    }
+
+    &--primary {
+      background-color: #FF5500;
+
+      &:hover {
+        background-color: #C54400;
+      }
+    }
+  }
+
+  .register-form__error-message {
+    color: red;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .register-form__success-message {
+    color: green;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .register-form__password-wrapper {
+    position: relative;
+
+    .register-form__input {
+      width: 100%;
+      padding-right: 40px;
+    }
+  }
+
+  .register-form__eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #007bff;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #0056b3;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .register-form__title {
+    color: black;
+  }
+
+  .register-form__label {
     color: black;
   }
 }
 
-@media (width <=400px) {
-
+@media (width <= 400px) {
   .register-form {
     margin-left: 15px;
     margin-right: 15px;
   }
-
 }
+
 </style>

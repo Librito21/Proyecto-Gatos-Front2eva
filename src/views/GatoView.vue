@@ -60,17 +60,17 @@ const gatosFiltrados = computed(() => {
   </v-container>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .v-row + .v-row {
   margin-top: 8px;
 }
 
-.NoFiltroContenedor{
-  display:flex;
+.NoFiltroContenedor {
+  display: flex;
   justify-content: center;
 }
 
-.NoFiltro{
+.NoFiltro {
   background-color: #FF5500;
   max-width: 500px;
   display: flex;
@@ -82,4 +82,5 @@ const gatosFiltrados = computed(() => {
   background-color: #FF5500 !important;
   border-color: #FF5500 !important;
 }
+
 </style>

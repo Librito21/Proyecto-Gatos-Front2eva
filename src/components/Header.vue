@@ -164,36 +164,36 @@ canvas {
 .usuario-menu {
   position: relative;
   display: inline-block;
-}
 
-.datos-usuario {
-  position: absolute;
-  left: -60px;
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  background: white;
-  padding: 10px;
-  
-  & .boton-1 {
-    background-color: #FF5500;
-    color: white;
-    margin: 15px 0;
-    padding: 10px 15px;
-    border-radius: 10px;
-  }
+  .datos-usuario {
+    position: absolute;
+    left: -60px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: white;
+    padding: 10px;
 
-  & .boton-2 {
-    background-color: #FF5500;
-    color: white;
-    margin-bottom: 10px;
-    padding: 10px 15px;
-    border-radius: 10px;
+    & .boton-1 {
+      background-color: #FF5500;
+      color: white;
+      margin: 15px 0;
+      padding: 10px 15px;
+      border-radius: 10px;
+    }
+
+    & .boton-2 {
+      background-color: #FF5500;
+      color: white;
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      border-radius: 10px;
+    }
   }
 }
 

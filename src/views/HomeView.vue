@@ -48,7 +48,7 @@ store.findAll();
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .titulo {
   text-align: center;
   margin-bottom: 20px;
@@ -113,10 +113,10 @@ store.findAll();
   border: none;
   cursor: pointer;
   transition: background 0.3s ease-in-out;
-}
 
-.cta-button:hover {
-  background-color: #FB7C3C;
+  &:hover {
+    background-color: #FB7C3C;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -131,16 +131,16 @@ store.findAll();
   .page-container {
     padding: 0 30px;
   }
-  
+
   .logo-container {
     font-size: 2.8rem;
     margin-top: 92px;
   }
-  
+
   .quienes-somos {
     padding: 25px;
   }
-  
+
   .cta-button {
     font-size: 1.1rem;
     padding: 10px 20px;
@@ -151,21 +151,21 @@ store.findAll();
   .page-container {
     padding: 0 20px;
   }
-  
+
   .logo-container {
     font-size: 2.2rem;
   }
-  
+
   .quienes-somos {
     padding: 20px;
     text-align: left;
   }
-  
+
   p {
     font-size: 0.95rem;
     line-height: 1.5;
   }
-  
+
   .cta-button {
     font-size: 1rem;
     padding: 10px 16px;
@@ -177,17 +177,18 @@ store.findAll();
   .page-container {
     padding: 0 15px;
   }
-  
+
   .logo-container {
     font-size: 1.8rem;
   }
-  
+
   .quienes-somos {
     padding: 15px;
   }
-  
+
   p {
     font-size: 0.9rem;
   }
 }
+
 </style>

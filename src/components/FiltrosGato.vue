@@ -146,7 +146,7 @@ const mostrarTodasRazas = () => {
   </v-container>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .filtros-title {
   font-size: 1.1rem;
   font-weight: 500;
@@ -166,49 +166,56 @@ const mostrarTodasRazas = () => {
 }
 
 /* Definir el color naranja personalizado */
-:deep(.v-btn.naranja) {
-  background-color: #FF5500 !important;
-  color: white !important;
-  border: none !important;
+.v-btn {
+  &.naranja {
+    background-color: #FF5500 !important;
+    color: white !important;
+    border: none !important;
+  }
 }
 
-:deep(.v-slider.naranja .v-slider-track__fill),
-:deep(.v-slider.naranja .v-slider-thumb__surface) {
-  background-color: #FF5500 !important;
-  border-color: #FF5500 !important;
+.v-slider {
+  &.naranja {
+    .v-slider-track__fill,
+    .v-slider-thumb__surface {
+      background-color: #FF5500 !important;
+      border-color: #FF5500 !important;
+    }
+  }
 }
 
 /* Personalizar colores de los paneles de expansión */
-:deep(.v-expansion-panel-title__overlay) {
-  background-color: rgba(255, 85, 0, 0.05) !important;
-}
+.v-expansion-panel {
+  :deep(.v-expansion-panel-title__overlay) {
+    background-color: rgba(255, 85, 0, 0.05) !important;
+  }
 
-:deep(.v-expansion-panel-title--active),
-:deep(.v-expansion-panel-title:hover) {
-  color: #FF5500 !important;
-}
+  :deep(.v-expansion-panel-title--active),
+  :deep(.v-expansion-panel-title:hover) {
+    color: #FF5500 !important;
+  }
 
-:deep(.v-expansion-panel-title__icon .v-icon) {
-  color: #FF5500 !important;
-}
+  :deep(.v-expansion-panel-title__icon .v-icon) {
+    color: #FF5500 !important;
+  }
 
-/* Eliminar espacios innecesarios */
-:deep(.v-expansion-panel) {
-  box-shadow: none !important;
-  background: transparent !important;
-}
+  :deep(.v-expansion-panel) {
+    box-shadow: none !important;
+    background: transparent !important;
+  }
 
-:deep(.v-expansion-panels) {
-  box-shadow: none !important;
-  background: transparent !important;
-}
+  :deep(.v-expansion-panels) {
+    box-shadow: none !important;
+    background: transparent !important;
+  }
 
-:deep(.v-sheet) {
-  padding: 0 !important;
-}
+  :deep(.v-sheet) {
+    padding: 0 !important;
+  }
 
-:deep(.v-expansion-panel-text__wrapper) {
-  padding: 0 12px 16px 12px !important;
+  :deep(.v-expansion-panel-text__wrapper) {
+    padding: 0 12px 16px 12px !important;
+  }
 }
 
 /* Asegurar que los contenedores no tengan padding indeseado */
@@ -231,7 +238,7 @@ const mostrarTodasRazas = () => {
     font-size: 0.8125rem;
   }
 
-  .ResponsiveBoton{
+  .ResponsiveBoton {
     gap: 10px;
   }
 }

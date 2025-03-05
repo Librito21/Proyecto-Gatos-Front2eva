@@ -31,66 +31,64 @@
   </footer>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .footer {
   width: 100%;
   padding: 10px 0; /* Se reduce la altura */
   text-align: center;
-}
 
-.footer__container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  padding: 5px;
-}
-
-/* Cada sección del footer ocupa todo el ancho en móviles */
-.footer__section {
-  width: 100%;
-  padding: 5px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center
-}
-
-/* Créditos al final */
-.footer__credits {
-  font-size: 12px;
-  opacity: 0.8;
-  margin-top: 5px;
-}
-
-/* Enlaces dentro del footer */
-.footer-link {
-  text-decoration: none;
-  color: #f7a277;
-  font-weight: bold;
-}
-
-.footer-link:hover {
-  color: #fb7c3c;
-}
-
-/* 📌 Estilos para pantallas más grandes */
-@media (min-width: 768px) {
   .footer__container {
-    flex-direction: row;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .footer__section {
-    width: auto;
-    text-align: left;
-    padding: 0 15px;
-  }
-
-  .footer__credits {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    width: 100%;
+    padding: 5px;
+
+    .footer__section {
+      width: 100%;
+      padding: 5px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer__credits {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-top: 5px;
+    }
+  }
+
+  .footer-link {
+    text-decoration: none;
+    color: #f7a277;
+    font-weight: bold;
+
+    &:hover {
+      color: #fb7c3c;
+    }
+  }
+
+  /* Estilos para pantallas más grandes */
+  @media (min-width: 768px) {
+    .footer__container {
+      flex-direction: row;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer__section {
+      width: auto;
+      text-align: left;
+      padding: 0 15px;
+    }
+
+    .footer__credits {
+      text-align: center;
+    }
   }
 }
+
 </style>

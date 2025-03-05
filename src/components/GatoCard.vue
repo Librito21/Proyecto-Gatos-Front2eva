@@ -25,8 +25,10 @@ const props = defineProps({
 </template>
 
 <style lang="scss" scoped>
-.gato-card__imagen :deep(.v-img__img--contain) {
-  object-fit: cover;
+.gato-card__imagen {
+  :deep(.v-img__img--contain) {
+    object-fit: cover;
+  }
 }
 
 .gato-card__mensaje {
@@ -34,4 +36,5 @@ const props = defineProps({
   color: green;
   margin-top: 10px;
 }
+
 </style>

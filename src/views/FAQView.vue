@@ -44,15 +44,12 @@
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .faq-page-wrapper {
   background-color: transparent;
-  /* Add padding-top to account for fixed header on desktop */
   padding-top: 0;
-}
 
-@media (min-width: 1024px) {
-  .faq-page-wrapper {
+  @media (min-width: 1024px) {
     padding-top: 110px; /* Adjust this value based on your header height */
   }
 }
@@ -61,6 +58,10 @@
   font-size: 1.25rem;
   font-weight: 500;
   color: #333;
+
+  @media (max-width: 479px) {
+    font-size: 1.1rem;
+  }
 }
 
 .category-title {
@@ -69,6 +70,10 @@
   background-color: white !important;
   color: #333 !important;
   border: 1px solid #e0e0e0;
+
+  @media (max-width: 479px) {
+    font-size: 0.85rem !important;
+  }
 }
 
 .faq-question {
@@ -76,6 +81,10 @@
   font-weight: 600;
   color: #424242;
   line-height: 1.2;
+
+  @media (max-width: 479px) {
+    font-size: 0.8125rem;
+  }
 }
 
 .faq-answer {
@@ -84,33 +93,20 @@
   line-height: 1.3;
   padding-left: 4px;
   padding-right: 4px;
-}
 
-/* Mobile styles (smaller than 480px) */
-@media (max-width: 479px) {
-  .faq-title {
-    font-size: 1.1rem;
-  }
-  
-  .category-title {
-    font-size: 0.85rem !important;
-  }
-  
-  .faq-question {
-    font-size: 0.8125rem;
-  }
-  
-  .faq-answer {
+  @media (max-width: 479px) {
     font-size: 0.75rem;
     padding-left: 2px;
     padding-right: 2px;
   }
-  
+}
+
+@media (max-width: 479px) {
   :deep(.v-expansion-panel-title) {
     min-height: 36px !important;
     padding: 4px 8px !important;
   }
-  
+
   :deep(.v-expansion-panel-text__wrapper) {
     padding: 0 8px 6px !important;
   }
