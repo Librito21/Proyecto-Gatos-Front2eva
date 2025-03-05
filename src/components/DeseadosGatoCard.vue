@@ -29,9 +29,4 @@ const props = defineProps({
   object-fit: fill;
 }
 
-.gato-card__mensaje {
-  text-align: center;
-  color: green;
-  margin-top: 10px;
-}
 </style>

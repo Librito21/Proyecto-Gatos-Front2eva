@@ -1,11 +1,12 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import type GatoDto from './dtos/gato.dto'
+import type DeseadoDto from './dtos/deseados.dto'
 
 export const usegatosStore = defineStore('gatos', () => {
     let gatos = ref<GatoDto[]>([])
     let gatosFiltrados = ref<GatoDto[]>([])
-    let gatosDeseados = ref<GatoDto[]>([]);
+    let gatosDeseados = ref<DeseadoDto[]>([]);
 
     // Estados para los filtros
     const filtros = ref({
@@ -16,7 +17,11 @@ export const usegatosStore = defineStore('gatos', () => {
 
     function cargarGatosDeseadosDesdeStorage() {
         const gatosDeseadosGuardados = JSON.parse(localStorage.getItem('gatosDeseados') || '[]');
-        gatosDeseados.value = gatosDeseadosGuardados;
+        if (gatosDeseadosGuardados.length > 0) {
+            gatosDeseados.value = gatosDeseadosGuardados;
+        } else {
+            obtenerGatosDeseados(); // Si no hay datos locales, carga desde API
+        }
     }
 
     // Almacenar gatosDeseados en LocalStorage
@@ -125,19 +130,26 @@ export const usegatosStore = defineStore('gatos', () => {
                     fecha_Deseado: new Date().toISOString()
                 })
             });
-
+    
             if (!response.ok) {
                 throw new Error('Error al agregar el gato a deseados');
             }
-
-            // Actualizamos el estado de gatosDeseados y lo guardamos en LocalStorage
-            gatosDeseados.value.push(id_Gato);
-            guardarGatosDeseadosEnStorage(); // Guardamos en LocalStorage
-            console.log(`Gato con ID ${id_Gato} agregado a deseados.`);
+    
+            const nuevoDeseado = await response.json(); // Obtener el ID generado
+    
+            if (!nuevoDeseado.id_Deseado) {
+                throw new Error("La API no devolvió un ID de deseado válido");
+            }
+    
+            // Aquí no modificamos las variables del componente, solo devolvemos el nuevo ID
+            return nuevoDeseado; // Devolver el nuevo ID de deseado
+    
         } catch (error) {
             console.error('Error en agregarGatoADeseados:', error);
+            throw error; // Lanza el error para manejarlo en el componente
         }
     }
+    
 
     // Eliminar un gato de los deseados usando el idDeseado
     async function eliminarGatoDeDeseados(idDeseado: number) {
@@ -145,19 +157,20 @@ export const usegatosStore = defineStore('gatos', () => {
             const response = await fetch(`https://localhost:7278/api/Deseado/${idDeseado}`, {
                 method: 'DELETE'
             });
-
+    
             if (!response.ok) {
                 throw new Error('Error al eliminar el gato de deseados');
             }
-
-            // Eliminamos el gato de la lista y actualizamos LocalStorage
-            gatosDeseados.value = gatosDeseados.value.filter(gato => gato.id_Gato !== idDeseado);
-            guardarGatosDeseadosEnStorage(); // Guardamos en LocalStorage
+    
+            // Filtrar correctamente usando id_Deseado
+            gatosDeseados.value = gatosDeseados.value.filter(gato => gato.id_Deseado !== idDeseado);
+            guardarGatosDeseadosEnStorage();
             console.log(`Gato con ID deseado ${idDeseado} eliminado de deseados.`);
         } catch (error) {
             console.error('Error en eliminarGatoDeDeseados:', error);
         }
     }
+    
 
     return {
         gatos,

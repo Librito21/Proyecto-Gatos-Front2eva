@@ -15,12 +15,19 @@ const gatosDeseados = computed(() => gatosStore.gatosDeseados);
 const modal = ref(false);
 const mensaje = ref("");
 const esDeseado = ref(false);
+const idDeseado = ref<number | null>(null);
 
 onMounted(() => {
   autenticacion.cargarUsuarioDesdeLocalStorage();
-  esDeseado.value = gatosStore.gatosDeseados.some(gato => gato.Id_Gato === props.gato.Id_Gato);
-
+  
+  const deseado = gatosStore.gatosDeseados.find(gato => Number(gato.id_Gato) === Number(props.gato.id_Gato));
+  
+  if (deseado) {
+    esDeseado.value = true;
+    idDeseado.value = deseado.id_Deseado !== undefined ? deseado.id_Deseado : null; // Guardar ID si existe
+  }
 });
+
 
 const abrirModal = () => {
   modal.value = true;
@@ -59,30 +66,48 @@ const enviarEmail = async () => {
 };
 
 const agregarADeseados = async () => {
-    if (!autenticacion.usuario) {
-        mensaje.value = 'Debes iniciar sesión para agregar a deseados';
-        return;
-    }
+  if (!autenticacion.usuario) {
+    mensaje.value = "Debes iniciar sesión para agregar a deseados";
+    return;
+  }
 
-    try {
-        if (esDeseado.value) {
-            // Eliminar gato de los deseados
-            const idDeseado = gatosStore.gatosDeseados.find(deseado => deseado.Id_Gato === props.gato.Id_Gato)?.Id_Gato;
-            if (idDeseado) {
-                await gatosStore.eliminarGatoDeDeseados(idDeseado); // Llamamos a la store para eliminar el gato de los deseados
-                esDeseado.value = false;  // Actualizamos el estado del corazón a gris
-                mensaje.value = 'Gato eliminado de deseados';
-            }
-        } else {
-            // Agregar gato a los deseados
-            await gatosStore.agregarGatoADeseados(autenticacion.usuario.Id_Usuario, props.gato.Id_Gato);
-            esDeseado.value = true;  // Actualizamos el estado del corazón a rojo
-            mensaje.value = 'Gato agregado a deseados';
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        mensaje.value = 'No se pudo actualizar la lista de deseados';
-    }
+  if (esDeseado.value) {
+    mensaje.value = "Este gato ya está en deseados";
+    return;
+  }
+
+  try {
+    const nuevoDeseado = await gatosStore.agregarGatoADeseados(autenticacion.usuario.userId, props.gato.id_Gato,);
+    esDeseado.value = true;
+    idDeseado.value = nuevoDeseado.id_Deseado;
+    mensaje.value = "Gato agregado a deseados";
+  } catch (error) {
+    console.error("Error:", error);
+    mensaje.value = "No se pudo agregar a deseados";
+  }
+};
+
+const eliminarDeDeseados = async () => {
+  if (!autenticacion.usuario) {
+    mensaje.value = "Debes iniciar sesión para eliminar de deseados";
+    return;
+  }
+
+  if (idDeseado.value === null || idDeseado.value === undefined) {
+    mensaje.value = "No se encontró el ID de deseados";
+    console.error("Error: idDeseado es null o undefined", idDeseado.value);
+    return;
+  }
+
+  try {
+    await gatosStore.eliminarGatoDeDeseados(idDeseado.value);
+    esDeseado.value = false;
+    idDeseado.value = null;
+    mensaje.value = "Gato eliminado de deseados";
+  } catch (error) {
+    console.error("Error:", error);
+    mensaje.value = "No se pudo eliminar de deseados";
+  }
 };
 </script>
 
@@ -97,9 +122,8 @@ const agregarADeseados = async () => {
       <p><strong>Descripción:</strong> {{ gato.descripcion_Gato }}</p>
     </v-card-text>
     <v-card-actions>
-      <v-btn icon @click="agregarADeseados">
-        <v-icon :color="esDeseado ? 'red' : 'grey'">mdi-heart</v-icon>
-      </v-btn>
+      <v-btn color="green" @click="agregarADeseados" :disabled="esDeseado">Añadir a Deseados</v-btn>
+      <v-btn color="red" @click="eliminarDeDeseados" :disabled="!esDeseado">Eliminar de Deseados</v-btn>
     </v-card-actions>
     <p v-if="mensaje" class="gato-card__mensaje">{{ mensaje }}</p>
     <v-card-actions>
@@ -124,6 +148,7 @@ const agregarADeseados = async () => {
     </v-dialog>
   </v-card>
 </template>
+
 
 <style scoped lang="scss">
 .CardGatoDetalles {

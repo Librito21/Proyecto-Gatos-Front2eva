@@ -39,7 +39,7 @@ export const useprotectorasStore = defineStore('protectoras', () => {
 
             const data: ProtectoraDto[] = await response.json();
             protectoras.value = data;
-            console.log('Gatos obtenidos:', data);
+            console.log('Protectoras obtenidas:', data);
         } catch (error) {
             console.error('Error al obtener los gatos:', error);
         }
