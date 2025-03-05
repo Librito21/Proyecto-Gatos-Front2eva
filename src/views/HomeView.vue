@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { usegatosStore } from '@/stores/gatos';
+import { RouterLink } from 'vue-router'
 
-const store = usegatosStore();
-store.findAll();
 </script>
 
 <template>

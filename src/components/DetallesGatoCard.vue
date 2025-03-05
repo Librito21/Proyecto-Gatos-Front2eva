@@ -12,19 +12,24 @@ const { usuario } = storeToRefs(autenticacion);
 const gatosStore = usegatosStore();
 const gatosDeseados = computed(() => gatosStore.gatosDeseados);
 
-const modal = ref(false);
 const mensaje = ref("");
 const esDeseado = ref(false);
 const idDeseado = ref<number | null>(null);
+const modal = ref(false);
 
-onMounted(() => {
+onMounted(async () => {
   autenticacion.cargarUsuarioDesdeLocalStorage();
-  
+  await gatosStore.obtenerGatosDeseados(); // Asegurar que los gatos deseados están actualizados
+
+  console.log("Gatos deseados cargados:", gatosStore.gatosDeseados); // Verificar en consola
+
   const deseado = gatosStore.gatosDeseados.find(gato => Number(gato.id_Gato) === Number(props.gato.id_Gato));
-  
+
   if (deseado) {
     esDeseado.value = true;
-    idDeseado.value = deseado.id_Deseado !== undefined ? deseado.id_Deseado : null; // Guardar ID si existe
+    idDeseado.value = deseado.id_Deseado || null; // Asegurar que se guarda correctamente
+
+    console.log("ID de deseado asignado:", idDeseado.value); // Verifica si se asigna bien
   }
 });
 

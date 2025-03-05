@@ -29,29 +29,12 @@ export const usegatosStore = defineStore('gatos', () => {
         localStorage.setItem('gatosDeseados', JSON.stringify(gatosDeseados.value));
     }
 
-
-    function findAll() {
-        //fetch('https://jsonplaceholder.typicode.com/user')
-        //resizeBy.json()
-        //data
-        /*let data = [
-            { Id_Gato: 0, Id_Protectora: 0, Nombre_Gato: 'test', Raza: 'test', Edad: 5, Esterilizado: 'test', Sexo: 'test', Descripcion_Gato: 'test', Imagen_Gato: 'test', },
-            { Id_Gato: 1, Id_Protectora: 1, Nombre_Gato: 'test', Raza: 'test', Edad: 5, Esterilizado: 'test', Sexo: 'test', Descripcion_Gato: 'test', Imagen_Gato: 'test', },
-
-        ]
-        gatos.value.splice(0, gatos.value.length, ...data)*/
-    }
-
     function createGato(gato: GatoDto) {
         //fetch(POST)
         //body: JSON.stringify()
         gatos.value.push(gato)
         aplicarFiltros() // Volver a aplicar los filtros cuando se agregue un gato
     }
-
-    function deleteGato() { }
-
-    function updateGato() { }
 
     async function fetchGato() {
         try {
@@ -98,24 +81,27 @@ export const usegatosStore = defineStore('gatos', () => {
                 throw new Error('Error al obtener los gatos deseados');
             }
             const data = await response.json();
-            console.log('Datos obtenidos de la API (deseados):', data);
-
-            // Ahora necesitamos obtener la información completa de cada gato
+    
+            // Obtener la información completa de cada gato incluyendo `id_Deseado`
             const gatosCompletos = await Promise.all(
                 data.map(async (deseado: any) => {
                     const gatoResponse = await fetch(`https://localhost:7278/api/Gato/${deseado.id_Gato}`);
                     if (!gatoResponse.ok) {
                         throw new Error(`Error al obtener el gato con id ${deseado.id_Gato}`);
                     }
-                    return await gatoResponse.json();
+                    const gato = await gatoResponse.json();
+                    
+                    return { ...gato, id_Deseado: deseado.id_Deseado }; // ✅ Guardamos `id_Deseado`
                 })
             );
-
-            gatosDeseados.value = gatosCompletos;
+    
+            gatosDeseados.value = gatosCompletos; // ✅ Ahora sí incluye `id_Deseado`
+            guardarGatosDeseadosEnStorage(); // Guarda en LocalStorage
         } catch (error) {
             console.error('Error al obtener los gatos deseados:', error);
         }
     }
+    
 
     async function agregarGatoADeseados(idUsuario: number, id_Gato: number) {
         try {
@@ -141,7 +127,10 @@ export const usegatosStore = defineStore('gatos', () => {
                 throw new Error("La API no devolvió un ID de deseado válido");
             }
     
-            // Aquí no modificamos las variables del componente, solo devolvemos el nuevo ID
+            gatosDeseados.value.push({ ...nuevoDeseado, id_Deseado: nuevoDeseado.id_Deseado });
+            guardarGatosDeseadosEnStorage();
+            console.log('Gato agregado a deseados:', nuevoDeseado);
+            
             return nuevoDeseado; // Devolver el nuevo ID de deseado
     
         } catch (error) {
@@ -177,10 +166,7 @@ export const usegatosStore = defineStore('gatos', () => {
         gatosFiltrados,
         filtros,
         gatosDeseados,
-        findAll,
         createGato,
-        deleteGato,
-        updateGato,
         fetchGato,
         actualizarFiltros,
         aplicarFiltros,
