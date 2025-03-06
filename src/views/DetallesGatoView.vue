@@ -66,6 +66,11 @@ watch(() => route.params.id, obtenerGato);
   color: $color-principal;
 }
 
+.v-col-12 {
+  flex: 0 0 125%;
+  max-width: 125%;
+}
+
 @media (min-width: 1010px) {
   .v-container {
     margin-top: 105px;
