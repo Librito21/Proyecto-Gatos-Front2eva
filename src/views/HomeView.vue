@@ -30,6 +30,8 @@ import { RouterLink } from 'vue-router'
         Aquí encontrarás fotos, descripciones y datos de contacto para que puedas conocer a cada uno de ellos y ponerte en contacto con la protectora correspondiente de manera sencilla.
       </p>
   <br>
+      <img src="../../Images/logos/foto-home.jpeg" alt="foto-home" class="imagen-home">
+      <br>
       <p>
         Nuestra misión es no solo facilitar las adopciones, sino también dar voz a las protectoras, apoyando su labor y concienciando sobre la importancia de la <span class="highlight">adopción responsable</span>. 
         Cada gato que aparece aquí tiene una historia, un pasado que muchas veces ha sido difícil, pero lo más importante: un futuro lleno de cariño que puede comenzar contigo.
@@ -91,6 +93,14 @@ import { RouterLink } from 'vue-router'
   text-align: center;
   max-width: 800px;
   margin: 0 auto $espacio-grande;
+}
+
+.imagen-home {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  margin-top: -15px;
+  border-radius: $espacio-mediano;
 }
 
 .highlight {
