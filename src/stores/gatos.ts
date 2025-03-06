@@ -74,14 +74,14 @@ export const usegatosStore = defineStore('gatos', () => {
         })
     }
 
-    async function obtenerGatosDeseados() {
+    async function obtenerGatosDeseados(id_Usuario: number) {
         try {
-            const response = await fetch('https://localhost:7278/api/Deseado');
+            const response = await fetch(`https://localhost:7278/api/Deseado/usuario/${id_Usuario}`);
             if (!response.ok) {
                 throw new Error('Error al obtener los gatos deseados');
             }
             const data = await response.json();
-    
+
             // Obtener la información completa de cada gato incluyendo `id_Deseado`
             const gatosCompletos = await Promise.all(
                 data.map(async (deseado: any) => {
@@ -90,18 +90,18 @@ export const usegatosStore = defineStore('gatos', () => {
                         throw new Error(`Error al obtener el gato con id ${deseado.id_Gato}`);
                     }
                     const gato = await gatoResponse.json();
-                    
+
                     return { ...gato, id_Deseado: deseado.id_Deseado }; // ✅ Guardamos `id_Deseado`
                 })
             );
-    
+
             gatosDeseados.value = gatosCompletos; // ✅ Ahora sí incluye `id_Deseado`
             guardarGatosDeseadosEnStorage(); // Guarda en LocalStorage
         } catch (error) {
             console.error('Error al obtener los gatos deseados:', error);
         }
     }
-    
+
 
     async function agregarGatoADeseados(idUsuario: number, id_Gato: number) {
         try {
@@ -116,29 +116,29 @@ export const usegatosStore = defineStore('gatos', () => {
                     fecha_Deseado: new Date().toISOString()
                 })
             });
-    
+
             if (!response.ok) {
                 throw new Error('Error al agregar el gato a deseados');
             }
-    
+
             const nuevoDeseado = await response.json(); // Obtener el ID generado
-    
+
             if (!nuevoDeseado.id_Deseado) {
                 throw new Error("La API no devolvió un ID de deseado válido");
             }
-    
+
             gatosDeseados.value.push({ ...nuevoDeseado, id_Deseado: nuevoDeseado.id_Deseado });
             guardarGatosDeseadosEnStorage();
             console.log('Gato agregado a deseados:', nuevoDeseado);
-            
+
             return nuevoDeseado; // Devolver el nuevo ID de deseado
-    
+
         } catch (error) {
             console.error('Error en agregarGatoADeseados:', error);
             throw error; // Lanza el error para manejarlo en el componente
         }
     }
-    
+
 
     // Eliminar un gato de los deseados usando el idDeseado
     async function eliminarGatoDeDeseados(idDeseado: number) {
@@ -146,11 +146,11 @@ export const usegatosStore = defineStore('gatos', () => {
             const response = await fetch(`https://localhost:7278/api/Deseado/${idDeseado}`, {
                 method: 'DELETE'
             });
-    
+
             if (!response.ok) {
                 throw new Error('Error al eliminar el gato de deseados');
             }
-    
+
             // Filtrar correctamente usando id_Deseado
             gatosDeseados.value = gatosDeseados.value.filter(gato => gato.id_Deseado !== idDeseado);
             guardarGatosDeseadosEnStorage();
@@ -159,7 +159,7 @@ export const usegatosStore = defineStore('gatos', () => {
             console.error('Error en eliminarGatoDeDeseados:', error);
         }
     }
-    
+
 
     return {
         gatos,

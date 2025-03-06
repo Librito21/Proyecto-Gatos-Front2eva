@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue';
 import { usegatosStore } from '@/stores/gatos';
+import { useAutenticacion } from '@/stores/Autentificacion';
 import DeseadosGatoCard from '@/components/DeseadosGatoCard.vue';
 
 // Obtener la store
+const Autenticacion = useAutenticacion();
 const gatosStore = usegatosStore();
 const gatosDeseados = computed(() => gatosStore.gatosDeseados);
 
 onMounted(async () => {
   await gatosStore.obtenerGatosDeseados();
   console.log('Gatos deseados al montar la vista:', gatosDeseados.value);
+  Autenticacion.cargarUsuarioDesdeLocalStorage();
+  
+  if (Autenticacion.usuario) {
+    gatosStore.obtenerGatosDeseados(Autenticacion.usuario.userId); // ✅ Ahora solo carga los gatos del usuario
+  }
 });
 </script>
 

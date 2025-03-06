@@ -84,7 +84,7 @@ const togglePasswordVisibility = () => {
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: $sombra-contenedor;
 
   &__title {
     text-align: center;
