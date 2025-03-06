@@ -22,4 +22,4 @@ import Footer from '@/components/Footer.vue';
   }
   
 }
-</style>
+</style> 
