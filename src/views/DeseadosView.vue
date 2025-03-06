@@ -40,6 +40,7 @@ onMounted(async () => {
   &__titulo {
     font-size: 2rem;
     margin-bottom: $espacio-grande;
+    color:$color-principal;
   }
 
   &__lista {

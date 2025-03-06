@@ -9,7 +9,7 @@ store.fetchProtectora();
 
 <template>
   <div class="protectoras">
-    <h1>Protectoras</h1>
+    <h1>Protectoras que participan</h1>
     <div class="protectoras-container">
       <v-col 
         v-for="protectora in store.protectoras" 

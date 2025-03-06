@@ -84,6 +84,7 @@ const cerrarSesion = () => {
   &__subtitulo {
     text-align: center;
     margin-bottom: 15px;
+    color: $color-principal;
   }
 
   &__dato {

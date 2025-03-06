@@ -43,6 +43,7 @@ watch(() => route.params.id, obtenerGato);
 
 <template>
   <v-container>
+    <h1 v-if="gato" class="titulo-detalles">Soy {{ gato.nombre_Gato }} ¡Conóceme! 🐾</h1>
     <v-row justify="center">
       <v-col cols="12" md="9" class="ContainerDetallesGatos">
         <DetallesGatoCard v-if="gato" :gato="gato" :protectora="protectora" />
@@ -54,18 +55,20 @@ watch(() => route.params.id, obtenerGato);
 </template>
 
 <style scoped lang="scss">
-
-.ContainerDetallesGatos{
+.ContainerDetallesGatos {
   display: flex;
   justify-content: center;
 }
 
+.titulo-detalles {
+  margin-bottom: 20px;
+  text-align: center;
+  color: $color-principal;
+}
+
 @media (min-width: 1010px) {
-
-.v-container {
-  margin-top: 105px;
+  .v-container {
+    margin-top: 105px;
+  }
 }
-
-}
-
 </style>
