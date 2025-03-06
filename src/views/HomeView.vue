@@ -49,12 +49,13 @@ import { RouterLink } from 'vue-router'
 <style scoped lang="scss">
 .titulo {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: $espacio-grande;
   padding: 0 15px;
 }
 
 .page-container {
-  padding: 0 20px;
+  font-family: $fuente-textos;
+  padding: 0 $espacio-grande;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -66,7 +67,7 @@ import { RouterLink } from 'vue-router'
   font-size: 3.5rem;
   font-weight: bold;
   color: #ddd;
-  gap: 5px;
+  gap: $espacio-pequeno;
 }
 
 .logo-svg {
@@ -79,17 +80,17 @@ import { RouterLink } from 'vue-router'
   font-size: 1.2rem;
   font-weight: 500;
   color: #F7A277;
-  margin-top: 5px;
+  margin-top: $espacio-pequeno;
 }
 
 .quienes-somos {
   background: rgba(255, 85, 0, 0.1);
-  padding: 30px;
-  border-radius: 10px;
+  padding: $espacio-extra-grande;
+  border-radius: $espacio-mediano;
   color: black;
   text-align: center;
   max-width: 800px;
-  margin: 0 auto 20px;
+  margin: 0 auto $espacio-grande;
 }
 
 .highlight {
@@ -98,7 +99,7 @@ import { RouterLink } from 'vue-router'
 }
 
 .cta-container {
-  margin-top: 20px;
+  margin-top: $espacio-grande;
 }
 
 .cta-button {
@@ -107,7 +108,7 @@ import { RouterLink } from 'vue-router'
   font-size: 1.2rem;
   font-weight: bold;
   padding: 12px 24px;
-  border-radius: 30px;
+  border-radius: $espacio-extra-grande;
   border: none;
   cursor: pointer;
   transition: background 0.3s ease-in-out;
@@ -120,14 +121,14 @@ import { RouterLink } from 'vue-router'
 @media (prefers-color-scheme: dark) {
   .quienes-somos {
     background: rgba(255, 85, 0, 0.1);
-    color: white;
+    color: $color-blanco;
   }
 }
 
 /* Responsive styles */
 @media (min-width: 1010px) {
   .page-container {
-    padding: 0 30px;
+    padding: 0 $espacio-extra-grande;
   }
 
   .logo-container {
@@ -141,13 +142,13 @@ import { RouterLink } from 'vue-router'
 
   .cta-button {
     font-size: 1.1rem;
-    padding: 10px 20px;
+    padding: $espacio-mediano $espacio-grande;
   }
 }
 
 @media (max-width: 480px) {
   .page-container {
-    padding: 0 20px;
+    padding: 0 $espacio-grande;
   }
 
   .logo-container {
@@ -155,7 +156,7 @@ import { RouterLink } from 'vue-router'
   }
 
   .quienes-somos {
-    padding: 20px;
+    padding: $espacio-grande;
     text-align: left;
   }
 
@@ -166,7 +167,7 @@ import { RouterLink } from 'vue-router'
 
   .cta-button {
     font-size: 1rem;
-    padding: 10px 16px;
+    padding: $espacio-mediano 16px;
     width: 100%;
   }
 }

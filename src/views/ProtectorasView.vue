@@ -25,7 +25,7 @@ store.fetchProtectora();
 <style scoped lang="scss">
 .protectoras {
   text-align: center;
-  padding: 20px;
+  padding: $espacio-grande;
 
   h1 {
     font-size: 1.6rem;
@@ -43,7 +43,7 @@ store.fetchProtectora();
   .card-col {
     max-width: 250px;
     flex: 1 1 220px;
-    padding: 10px;
+    padding: $espacio-mediano;
   }
 
   /* Mobile-First */

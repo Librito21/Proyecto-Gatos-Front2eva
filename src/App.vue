@@ -15,6 +15,10 @@ import Footer from '@/components/Footer.vue';
 
 <style scoped lang="scss">
 
+.v-container {
+  font-family: $fuente-textos;
+}
+
 @media (min-width: 1010px) {
 
   .v-container {

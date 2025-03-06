@@ -33,19 +33,19 @@ onMounted(async () => {
 <style scoped lang="scss">
 .deseados {
   max-width: 100%;
-  margin: 20px auto;
-  padding: 20px;
+  margin: $espacio-grande auto;
+  padding: $espacio-grande;
   text-align: center;
 
   &__titulo {
     font-size: 2rem;
-    margin-bottom: 20px;
+    margin-bottom: $espacio-grande;
   }
 
   &__lista {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: $espacio-grande;
     justify-items: center;
   }
 

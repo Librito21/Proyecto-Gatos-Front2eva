@@ -25,6 +25,10 @@ const props = defineProps({
 </template>
 
 <style lang="scss" scoped>
+.v-card {
+  font-family: $fuente-textos;
+}
+
 .gato-card__imagen {
   :deep(.v-img__img--contain) {
     object-fit: cover;
@@ -34,7 +38,7 @@ const props = defineProps({
 .gato-card__mensaje {
   text-align: center;
   color: green;
-  margin-top: 10px;
+  margin-top: $espacio-mediano;
 }
 
 </style>

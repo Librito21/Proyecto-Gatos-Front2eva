@@ -153,7 +153,7 @@ const mostrarTodasRazas = () => {
   color: #333;
 }
 
-.pa-0{
+.pa-0 {
   z-index: -1;
 }
 
@@ -173,7 +173,7 @@ const mostrarTodasRazas = () => {
 .v-btn {
   &.naranja {
     background-color: $color-principal !important;
-    color: white !important;
+    color: $color-blanco !important;
     border: none !important;
   }
 }
@@ -243,7 +243,7 @@ const mostrarTodasRazas = () => {
   }
 
   .ResponsiveBoton {
-    gap: 10px;
+    gap: $espacio-mediano;
   }
 }
 </style>

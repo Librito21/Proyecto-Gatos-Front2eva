@@ -73,12 +73,12 @@ const cerrarSesion = () => {
 .perfil {
   width: 90%;
   max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  margin: $espacio-grande auto;
+  padding: $espacio-grande;
+  border: $border-gris1;
+  border-radius: $espacio-mediano;
   background-color: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px $espacio-mediano rgba(0, 0, 0, 0.1);
 
   &__titulo,
   &__subtitulo {
@@ -87,28 +87,28 @@ const cerrarSesion = () => {
   }
 
   &__dato {
-    margin-bottom: 10px;
+    margin-bottom: $espacio-mediano;
   }
 
   &__cambiar-contrasena {
-    margin-top: 20px;
+    margin-top: $espacio-grande;
     text-align: center;
   }
 
   &__input {
     width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
+    padding: $espacio-mediano;
+    margin-top: $espacio-mediano;
+    border: $border-gris2;
     border-radius: 6px;
   }
 
   &__boton {
     width: 100%;
-    padding: 10px;
-    margin-top: 10px;
+    padding: $espacio-mediano;
+    margin-top: $espacio-mediano;
     background-color: #007bff;
-    color: white;
+    color: $color-blanco;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -116,7 +116,7 @@ const cerrarSesion = () => {
 
     &--rojo {
       background-color: $color-rojo;
-      margin-top: 20px;
+      margin-top: $espacio-grande;
       font-size: 18px;
     }
   }
@@ -131,7 +131,7 @@ const cerrarSesion = () => {
 @media (min-width: 768px) {
   .perfil {
     max-width: 600px;
-    padding: 30px;
+    padding: $espacio-extra-grande;
   }
 
   .perfil__boton {

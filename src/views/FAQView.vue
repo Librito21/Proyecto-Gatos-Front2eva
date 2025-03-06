@@ -67,7 +67,7 @@
 .category-title {
   font-size: 0.9rem !important;
   font-weight: 500 !important;
-  background-color: white !important;
+  background-color: $color-blanco !important;
   color: #333 !important;
   border: 1px solid #e0e0e0;
 
@@ -112,9 +112,9 @@
   }
 }
 
-/* Ensure expansion panels don't touch the edges and are white */
+/* Ensure expansion panels don't touch the edges and are $color-blanco */
 :deep(.v-expansion-panel) {
-  background-color: white !important;
+  background-color: $color-blanco !important;
   box-shadow: none !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
@@ -132,7 +132,7 @@
 }
 
 :deep(.v-expansion-panel-title) {
-  background-color: white !important;
+  background-color: $color-blanco !important;
   padding-left: 8px !important;
   padding-right: 8px !important;
 }

@@ -78,10 +78,10 @@ const togglePasswordVisibility = () => {
 <style scoped lang="scss">
 .login-form {
   max-width: 400px;
-  margin: 20px auto;
+  margin: $espacio-grande auto;
   margin-bottom: 50px;
   padding: 1rem;
-  border: 1px solid #ddd;
+  border: $border-gris1;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: $sombra-contenedor;
@@ -105,7 +105,7 @@ const togglePasswordVisibility = () => {
   &__input {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ccc;
+    border: $border-gris2;
     border-radius: 4px;
     font-size: 1rem;
     box-sizing: border-box;
@@ -115,7 +115,7 @@ const togglePasswordVisibility = () => {
     width: 100%;
     padding: 0.5rem;
     background-color: $color-principal;
-    color: white;
+    color: $color-blanco;
     border: none;
     border-radius: 4px;
     font-size: 1rem;
@@ -159,7 +159,7 @@ const togglePasswordVisibility = () => {
 
     .login-form__eye-icon {
       position: absolute;
-      right: 10px;
+      right: $espacio-mediano;
       top: 50%;
       transform: translateY(-50%);
       background: none;

@@ -44,7 +44,7 @@ watch(() => route.params.id, obtenerGato);
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="12" md="8" class="ContainerDetallesGatos">
+      <v-col cols="12" md="9" class="ContainerDetallesGatos">
         <DetallesGatoCard v-if="gato" :gato="gato" :protectora="protectora" />
         <v-alert v-else-if="cargando" type="info">Cargando...</v-alert>
         <v-alert v-else type="error">No se encontró el gato.</v-alert>

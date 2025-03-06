@@ -34,7 +34,7 @@
 <style scoped lang="scss">
 .footer {
   width: 100%;
-  padding: 10px 0; /* Se reduce la altura */
+  padding: $espacio-mediano 0; /* Se reduce la altura */
   text-align: center;
 
   .footer__container {
@@ -43,11 +43,11 @@
     align-items: center;
     text-align: center;
     width: 100%;
-    padding: 5px;
+    padding: $espacio-pequeno;
 
     .footer__section {
       width: 100%;
-      padding: 5px 0;
+      padding: $espacio-pequeno 0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -56,7 +56,7 @@
     .footer__credits {
       font-size: 12px;
       opacity: 0.8;
-      margin-top: 5px;
+      margin-top: $espacio-pequeno;
     }
   }
 

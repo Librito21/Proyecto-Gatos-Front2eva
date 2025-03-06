@@ -152,8 +152,9 @@ function resetPaw(ctx: CanvasRenderingContext2D) {
 
 <style scoped lang="scss">
 header {
+  font-family: $fuente-titulos;
   @include center-flex;
-  padding: 10px 15px;
+  padding: $espacio-mediano 15px;
   width: 100%;
 }
 
@@ -164,7 +165,7 @@ header {
 nav {
   display: flex;
   width: 170px;
-  gap: 5px;
+  gap: $espacio-pequeno;
   justify-content: center;
 }
 
@@ -177,7 +178,7 @@ canvas {
 .usuario-menu {
   position: relative;
   display: inline-block;
-  
+
   .datos-usuario {
     position: absolute;
     left: -60px;
@@ -186,39 +187,39 @@ canvas {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: $border-gris1;
+    border-radius: $espacio-pequeno;
     box-shadow: $sombra-contenedor;
-    background: white;
-    padding: 10px;
+    background: $color-blanco;
+    padding: $espacio-mediano;
     z-index: 3;
 
     & .boton-1 {
       background-color: $color-principal;
-      color: white;
+      color: $color-blanco;
       margin: 15px 0;
-      padding: 10px 15px;
-      border-radius: 10px;
+      padding: $espacio-mediano 15px;
+      border-radius: $espacio-mediano;
     }
 
     & .boton-2 {
       background-color: $color-principal;
-      color: white;
-      margin-bottom: 10px;
-      padding: 10px 15px;
-      border-radius: 10px;
+      color: $color-blanco;
+      margin-bottom: $espacio-mediano;
+      padding: $espacio-mediano 15px;
+      border-radius: $espacio-mediano;
     }
   }
 }
 
 .logout-btn {
-  margin-top: 5px;
+  margin-top: $espacio-pequeno;
   background: $color-rojo;
-  color: white;
+  color: $color-blanco;
   border: none;
-  padding: 5px 10px;
+  padding: $espacio-pequeno $espacio-mediano;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: $espacio-pequeno;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -226,17 +227,17 @@ canvas {
     color: black;
   }
   .usuario-menu circle {
-    stroke: #ddd;
+    stroke: #ddd; /* Hace que el contorno sea blanco en modo oscuro */
   }
   .usuario-menu path {
-    stroke: #ddd;
+    stroke: #ddd; /* Hace que el contorno sea blanco en modo oscuro */
   }
 }
 
 @media (min-width: 788px) {
   header {
     justify-content: flex-start;
-    padding: 15px 30px;
+    padding: 15px $espacio-extra-grande;
   }
 
   .text {
@@ -246,6 +247,7 @@ canvas {
 
   nav {
     flex-grow: 1;
+    display: flex;
     justify-content: start;
     align-items: center;
   }
@@ -273,6 +275,15 @@ canvas {
   svg {
     width: 70px;
     height: 70px;
+  }
+
+  nav {
+    gap: $espacio-grande;
+    align-items: center;
+  }
+
+  .usuario {
+    gap: $espacio-grande;
   }
 }
 </style>
