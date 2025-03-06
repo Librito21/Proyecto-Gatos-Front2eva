@@ -153,6 +153,10 @@ const mostrarTodasRazas = () => {
   color: #333;
 }
 
+.pa-0{
+  z-index: -1;
+}
+
 .filtro-header {
   font-size: 0.95rem;
   font-weight: 500;

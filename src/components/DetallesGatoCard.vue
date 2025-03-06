@@ -41,6 +41,51 @@ const cerrarModal = () => {
   modal.value = false;
   mensaje.value = "";
 };
+
+const agregarADeseados = async () => {
+  if (!autenticacion.usuario) {
+    mensaje.value = "Debes iniciar sesión para agregar a deseados";
+    return;
+  }
+
+  if (esDeseado.value) {
+    mensaje.value = "Este gato ya está en deseados";
+    return;
+  }
+
+  try {
+    const nuevoDeseado = await gatosStore.agregarGatoADeseados(autenticacion.usuario.userId, props.gato.id_Gato,);
+    esDeseado.value = true;
+    idDeseado.value = nuevoDeseado.id_Deseado;
+    mensaje.value = "Gato agregado a deseados";
+  } catch (error) {
+    console.error("Error:", error);
+    mensaje.value = "No se pudo agregar a deseados";
+  }
+};
+
+const eliminarDeDeseados = async () => {
+  if (!autenticacion.usuario) {
+    mensaje.value = "Debes iniciar sesión para eliminar de deseados";
+    return;
+  }
+
+  if (idDeseado.value === null || idDeseado.value === undefined) {
+    mensaje.value = "No se encontró el ID de deseados";
+    console.error("Error: idDeseado es null o undefined", idDeseado.value);
+    return;
+  }
+
+  try {
+    await gatosStore.eliminarGatoDeDeseados(idDeseado.value);
+    esDeseado.value = false;
+    idDeseado.value = null;
+    mensaje.value = "Gato eliminado de deseados";
+  } catch (error) {
+    console.error("Error:", error);
+    mensaje.value = "No se pudo eliminar de deseados";
+  }
+};
 </script>
 
 <template>
@@ -54,8 +99,8 @@ const cerrarModal = () => {
       <p><strong>Descripción:</strong> {{ gato.descripcion_Gato }}</p>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="green" @click="agregarADeseados" :disabled="esDeseado">Añadir a Deseados</v-btn>
-      <v-btn color="red" @click="eliminarDeDeseados" :disabled="!esDeseado">Eliminar de Deseados</v-btn>
+      <v-btn v-if="usuario" color="green" @click="agregarADeseados" :disabled="esDeseado">Añadir a Deseados</v-btn>
+      <v-btn v-if="usuario" color="red" @click="eliminarDeDeseados" :disabled="!esDeseado">Eliminar de Deseados</v-btn>
     </v-card-actions>
     <p v-if="mensaje" class="gato-card__mensaje">{{ mensaje }}</p>
     <v-card-actions>

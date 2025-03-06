@@ -177,7 +177,7 @@ canvas {
 .usuario-menu {
   position: relative;
   display: inline-block;
-
+  
   .datos-usuario {
     position: absolute;
     left: -60px;
@@ -191,6 +191,7 @@ canvas {
     box-shadow: $sombra-contenedor;
     background: white;
     padding: 10px;
+    z-index: 3;
 
     & .boton-1 {
       background-color: $color-principal;
