@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, onBeforeUnmount } from 'vue';
 import { useAutenticacion } from '@/stores/Autentificacion';
 
 const Autenticacion = useAutenticacion();
@@ -8,6 +8,8 @@ const { usuario } = storeToRefs(Autenticacion);
 const mostrarMenu = ref(false);
 const isHovering = ref(false);
 const offsets = ref([0, 0, 0]);
+const menuContainer = ref<HTMLElement | null>(null);
+const userIcon = ref<HTMLElement | null>(null);
 
 onMounted(() => {
   Autenticacion.cargarUsuarioDesdeLocalStorage();
@@ -31,16 +33,33 @@ onMounted(() => {
       });
     }
   }
+
+  document.addEventListener('click', closeMenu);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', closeMenu);
 });
 
 const toggleMenu = () => {
   mostrarMenu.value = !mostrarMenu.value;
 };
 
+const closeMenu = (event: Event) => {
+  if (
+    mostrarMenu.value &&
+    menuContainer.value &&
+    !menuContainer.value.contains(event.target as Node) &&
+    userIcon.value &&
+    !userIcon.value.contains(event.target as Node)
+  ) {
+    mostrarMenu.value = false;
+  }
+};
+
 function drawPaw(ctx: CanvasRenderingContext2D) {
   ctx.clearRect(0, 0, 200, 200);
 
-  // Huella grande (Palma)
   ctx.beginPath();
   ctx.arc(100, 120, 40, 0, Math.PI * 2);
   ctx.fillStyle = "#FF5500";
@@ -49,13 +68,11 @@ function drawPaw(ctx: CanvasRenderingContext2D) {
   ctx.fill();
   ctx.stroke();
 
-  // Círculo interior en la palma
   ctx.beginPath();
   ctx.arc(100, 132, 27, 0, Math.PI * 2);
   ctx.fillStyle = "whitesmoke";
   ctx.fill();
 
-  // Dedos
   drawCircle(ctx, 60, 70 + offsets.value[0], 20);
   drawCircle(ctx, 100, 60 + offsets.value[1], 22);
   drawCircle(ctx, 140, 70 + offsets.value[2], 20);
@@ -82,9 +99,9 @@ function animateRaise(ctx: CanvasRenderingContext2D) {
       offsets.value[index] = maxOffset;
       index++;
       drawPaw(ctx);
-      setTimeout(raiseStep, 200); // Aumentar el tiempo para hacerlo más lento
+      setTimeout(raiseStep, 200);
     } else {
-      setTimeout(() => resetPaw(ctx), 600); // También hacer más lento el regreso
+      setTimeout(() => resetPaw(ctx), 600);
     }
   }
 
@@ -115,11 +132,11 @@ function resetPaw(ctx: CanvasRenderingContext2D) {
           </template>
           <template v-else>
             <div class="usuario-menu">
-              <svg @click="toggleMenu" width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg @click="toggleMenu" ref="userIcon" width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="12" cy="8" r="4" fill="#FF5500" stroke="#3B2F2F" stroke-width="2" class="circulo-usuario" />
                 <path d="M4 20C4 16.6863 7.58172 14 12 14C16.4183 14 20 16.6863 20 20" stroke="#3B2F2F" stroke-width="2" class="cuerpo-usuario" />
               </svg>
-              <div v-if="mostrarMenu" class="datos-usuario">
+              <div v-if="mostrarMenu" ref="menuContainer" class="datos-usuario">
                 <p>Hola {{ usuario.nombre }}</p>
                 <RouterLink to="/perfil" class="boton-1"><span>Mi Perfil</span></RouterLink>
                 <RouterLink to="/deseados" class="boton-2"><span>❤️ Deseados</span></RouterLink>
@@ -133,9 +150,7 @@ function resetPaw(ctx: CanvasRenderingContext2D) {
   </main>
 </template>
 
-
 <style scoped lang="scss">
-/* 🔹 Mobile-First */
 header {
   @include center-flex;
   padding: 10px 15px;
@@ -210,10 +225,10 @@ canvas {
     color: black;
   }
   .usuario-menu circle {
-    stroke: #ddd; /* Hace que el contorno sea blanco en modo oscuro */
+    stroke: #ddd;
   }
   .usuario-menu path {
-    stroke: #ddd; /* Hace que el contorno sea blanco en modo oscuro */
+    stroke: #ddd;
   }
 }
 
@@ -230,7 +245,6 @@ canvas {
 
   nav {
     flex-grow: 1;
-    display: flex;
     justify-content: start;
     align-items: center;
   }
@@ -258,15 +272,6 @@ canvas {
   svg {
     width: 70px;
     height: 70px;
-  }
-
-  nav {
-    gap: 20px;
-    align-items: center;
-  }
-
-  .usuario {
-    gap: 20px;
   }
 }
 </style>
