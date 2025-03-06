@@ -75,6 +75,7 @@ const gatosFiltrados = computed(() => {
   max-width: 500px;
   display: flex;
   justify-content: center;
+  color:white;
 }
 
 :deep(.v-btn.primary),

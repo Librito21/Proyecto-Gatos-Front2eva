@@ -116,8 +116,8 @@ function resetPaw(ctx: CanvasRenderingContext2D) {
           <template v-else>
             <div class="usuario-menu">
               <svg @click="toggleMenu" width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="8" r="4" fill="#FF5500" stroke="#3B2F2F" stroke-width="2" />
-                <path d="M4 20C4 16.6863 7.58172 14 12 14C16.4183 14 20 16.6863 20 20" stroke="#3B2F2F" stroke-width="2" />
+                <circle cx="12" cy="8" r="4" fill="#FF5500" stroke="#3B2F2F" stroke-width="2" class="circulo-usuario" />
+                <path d="M4 20C4 16.6863 7.58172 14 12 14C16.4183 14 20 16.6863 20 20" stroke="#3B2F2F" stroke-width="2" class="cuerpo-usuario" />
               </svg>
               <div v-if="mostrarMenu" class="datos-usuario">
                 <p>Hola {{ usuario.nombre }}</p>
@@ -203,6 +203,18 @@ canvas {
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 5px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .datos-usuario {
+    color: black;
+  }
+  .usuario-menu circle {
+    stroke: #ddd; /* Hace que el contorno sea blanco en modo oscuro */
+  }
+  .usuario-menu path {
+    stroke: #ddd; /* Hace que el contorno sea blanco en modo oscuro */
+  }
 }
 
 @media (min-width: 788px) {

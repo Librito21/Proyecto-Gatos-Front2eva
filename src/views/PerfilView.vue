@@ -122,6 +122,12 @@ const cerrarSesion = () => {
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  .perfil{
+    color:black;
+  }
+}
+
 @media (min-width: 768px) {
   .perfil {
     max-width: 600px;
