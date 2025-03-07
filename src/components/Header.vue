@@ -164,8 +164,8 @@ header {
 
 nav {
   display: flex;
-  width: 170px;
-  gap: $espacio-pequeno;
+  flex-direction: column;
+  width: 150px;
   justify-content: center;
 }
 
