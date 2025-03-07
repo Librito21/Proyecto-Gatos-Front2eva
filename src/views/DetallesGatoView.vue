@@ -45,7 +45,7 @@ watch(() => route.params.id, obtenerGato);
   <v-container>
     <h1 v-if="gato" class="titulo-detalles">Soy {{ gato.nombre_Gato }} ¡Conóceme! 🐾</h1>
     <v-row justify="center">
-      <v-col cols="12" md="9" class="ContainerDetallesGatos">
+      <v-col cols="11" md="9" class="ContainerDetallesGatos">
         <DetallesGatoCard v-if="gato" :gato="gato" :protectora="protectora" />
         <v-alert v-else-if="cargando" type="info">Cargando...</v-alert>
         <v-alert v-else type="error">No se encontró el gato.</v-alert>
@@ -58,6 +58,7 @@ watch(() => route.params.id, obtenerGato);
 .ContainerDetallesGatos {
   display: flex;
   justify-content: center;
+  padding: 0;
 }
 
 .titulo-detalles {

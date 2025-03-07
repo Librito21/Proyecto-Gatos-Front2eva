@@ -114,7 +114,7 @@ const eliminarDeDeseados = async () => {
 
 <style scoped lang="scss">
 .CardGatoDetalles {
-  width: 72%;
+  width: 100%;
 }
 
 .gato-card__mensaje {

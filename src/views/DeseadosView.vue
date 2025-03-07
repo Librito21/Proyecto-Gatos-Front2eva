@@ -34,7 +34,6 @@ onMounted(async () => {
 .deseados {
   max-width: 100%;
   margin: $espacio-grande auto;
-  padding: $espacio-grande;
   text-align: center;
 
   &__titulo {

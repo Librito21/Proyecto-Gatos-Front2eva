@@ -247,8 +247,10 @@ canvas {
 
   nav {
     flex-grow: 1;
-    display: flex;
-    justify-content: start;
+    width: 170px;
+    gap: $espacio-pequeno;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
   }
 

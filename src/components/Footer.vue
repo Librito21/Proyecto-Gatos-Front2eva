@@ -8,7 +8,7 @@
       <!-- Contacto -->
       <div class="footer__section">
         <b>📞 Teléfono: 123456789</b>
-        <b style="width: 230px;">✉️ <a href="mailto:adopciones@zaragoza.com" class="footer-link">adopciones@zaragoza.com</a></b>
+        <b style="width: 230px;">✉️ <a href="mailto:a25959@svalero.com" class="footer-link">a25959@svalero.com</a></b>
       </div>
 
       <!-- Información General -->

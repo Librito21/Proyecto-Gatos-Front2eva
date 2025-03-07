@@ -38,21 +38,21 @@ store.fetchProtectora();
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
 
   .card-col {
     max-width: 250px;
     flex: 1 1 220px;
-    padding: $espacio-mediano;
+    padding: $espacio-pequeno;
   }
 
-  /* Mobile-First */
   @media (max-width: 768px) {
     flex-direction: row;
     justify-content: center;
+    margin: 0 -10px;
 
     .card-col {
-      max-width: 3000px;
+      max-width: 300px;
       flex: 1 1 180px;
     }
   }
@@ -66,7 +66,7 @@ store.fetchProtectora();
   }
 
   @media (min-width: 1024px) {
-    max-width: 1100px;
+    max-width: 850px;
     margin: 0 auto;
 
     .card-col {

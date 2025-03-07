@@ -79,6 +79,7 @@ const togglePasswordVisibility = () => {
 .login-form {
   max-width: 400px;
   margin: $espacio-grande auto;
+  margin-top: 70px;
   margin-bottom: 50px;
   padding: 1rem;
   border: $border-gris1;

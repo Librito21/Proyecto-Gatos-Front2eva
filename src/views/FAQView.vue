@@ -2,7 +2,7 @@
   <div class="faq-page-wrapper my-4">
     <v-container class="px-4">
       <v-row justify="center">
-        <v-col cols="11" sm="10" md="9" lg="8">
+        <v-col cols="12" sm="10" md="9" lg="8">
           <v-sheet rounded="lg" elevation="1" class="pa-0 mb-4">
             <div class="faq-title text-center py-3">Preguntas Frecuentes (FAQ)</div>
             <v-divider></v-divider>

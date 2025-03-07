@@ -74,6 +74,7 @@ const cerrarSesion = () => {
   width: 90%;
   max-width: 400px;
   margin: $espacio-grande auto;
+  margin-top: 40px;
   padding: $espacio-grande;
   border: $border-gris1;
   border-radius: $espacio-mediano;
