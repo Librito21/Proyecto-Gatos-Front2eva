@@ -229,4 +229,10 @@ const toggleConfirmPasswordVisibility = () => {
   }
 }
 
+@media (min-width: 1024px) {
+    .register-form {
+     margin-top: 120px;
+    }
+  }
+
 </style>
