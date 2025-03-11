@@ -33,5 +33,10 @@ const props = defineProps({
 <style scoped lang="scss">
 .v-img__img--cover {
   object-fit: cover;
+  max-height: 260px;
+}
+
+.protectora-card__image{
+  max-height: 260px;
 }
 </style>
