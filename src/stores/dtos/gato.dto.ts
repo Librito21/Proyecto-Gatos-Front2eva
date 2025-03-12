@@ -5,7 +5,7 @@ export default class GatoDto {
         public nombre_Gato: string,
         public raza: string,
         public edad: number,
-        public esterilizado: string,
+        public esterilizado: boolean,
         public sexo: string,
         public descripcion_Gato: string,
         public imagen_Gato: string,
