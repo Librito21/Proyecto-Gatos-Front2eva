@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useusuariosStore } from "@/stores/usuarios.ts";
 
 const usuariosStore = useusuariosStore();
 const mostrarModal = ref(false);
 const usuarioEditado = ref({ id_Usuario: 0, nombre: "", apellido:"", email: "", contraseña: "" });
+const busqueda = ref("");
 
 onMounted(() => {
     usuariosStore.fetchUsuarios();
@@ -36,16 +37,24 @@ const eliminarUsuario = async (id_Usuario: number | undefined) => {
         await usuariosStore.deleteUsuario(id_Usuario);
     }
 };
+
+const usuariosFiltrados = computed(() => {
+    return usuariosStore.usuarios.filter(usuario =>
+        usuario.nombre.toLowerCase().includes(busqueda.value.toLowerCase())
+    );
+});
 </script>
 
 <template>
     <div class="admin-usuarios">
         <h2 class="admin-usuarios__titulo">Gestión de Usuarios</h2>
 
+        <input v-model="busqueda" class="admin-usuarios__buscador" placeholder="Buscar usuario por nombre">
+
         <div class="admin-usuarios__lista">
             <h3 class="admin-usuarios__subtitulo">Lista de Usuarios</h3>
             <div class="admin-usuarios__grid">
-                <div v-for="usuario in usuariosStore.usuarios" :key="usuario.id_Usuario" class="admin-usuarios__item">
+                <div v-for="usuario in usuariosFiltrados" :key="usuario.id_Usuario" class="admin-usuarios__item">
                     <div class="admin-usuarios__info">
                         <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
                         <p><strong>Apellido</strong> {{ usuario.apellido }} </p>
@@ -89,6 +98,15 @@ const eliminarUsuario = async (id_Usuario: number | undefined) => {
         font-size: 2rem;
         color: #333;
         margin-bottom: $espacio-grande;
+    }
+
+    &__buscador {
+        width: 100%;
+        padding: $espacio-mediano;
+        margin-bottom: $espacio-grande;
+        border: 1px solid #ccc;
+        border-radius: $espacio-pequeno;
+        font-size: 1rem;
     }
 
     &__grid {
