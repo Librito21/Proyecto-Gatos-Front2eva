@@ -6,6 +6,7 @@ export const useAutenticacion = defineStore('Autenticacion', {
     }),
     getters: {
         esAutenticado: (state) => !!state.usuario,
+        esAdmin: (state) => state.usuario?.userId === 5,
     },
     actions: {
         iniciarSesion(datosUsuario: any) {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { usegatosStore } from '@/stores/gatos';
 import { useAutenticacion } from '@/stores/Autentificacion';
 import DeseadosGatoCard from '@/components/DeseadosGatoCard.vue';
@@ -9,21 +9,35 @@ const Autenticacion = useAutenticacion();
 const gatosStore = usegatosStore();
 const gatosDeseados = computed(() => gatosStore.gatosDeseados);
 
+// Estado para controlar la visualización del mensaje
+const mostrarMensaje = ref(false);
+
 onMounted(async () => {
   await gatosStore.obtenerGatosDeseados();
   console.log('Gatos deseados al montar la vista:', gatosDeseados.value);
   Autenticacion.cargarUsuarioDesdeLocalStorage();
   
   if (Autenticacion.usuario) {
-    gatosStore.obtenerGatosDeseados(Autenticacion.usuario.userId); // ✅ Ahora solo carga los gatos del usuario
+    await gatosStore.obtenerGatosDeseados(Autenticacion.usuario.userId); // ✅ Ahora solo carga los gatos del usuario
   }
+
+  // Esperar 1 segundo antes de mostrar el mensaje si no hay gatos
+  setTimeout(() => {
+    mostrarMensaje.value = gatosDeseados.value.length === 0;
+  }, 500);
 });
 </script>
 
 <template>
   <div class="deseados">
     <h1 class="deseados__titulo">Mis Gatos Deseados</h1>
-    <p v-if="gatosDeseados.length === 0" class="deseados__mensaje">No tienes gatos en tu lista de deseados.</p>
+
+    <!-- Mostrar mensaje solo después de 1 segundo si no hay gatos -->
+    <p v-if="mostrarMensaje" class="deseados__mensaje">
+      <img src="../../Images/gatos/Blanqui.png" alt="Gato deseado">
+      No tienes gatos en tu lista de deseados.
+    </p>
+
     <div v-else class="deseados__lista">
       <DeseadosGatoCard v-for="gato in gatosDeseados" :key="gato.id_Gato" :gato="gato"/>
     </div>
@@ -39,7 +53,21 @@ onMounted(async () => {
   &__titulo {
     font-size: 2rem;
     margin-bottom: $espacio-grande;
-    color:$color-principal;
+    color: $color-principal;
+  }
+
+  &__mensaje {
+    font-size: 1.2rem;
+    color: gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    img {
+      width: 150px;
+      height: auto;
+    }
   }
 
   &__lista {
@@ -72,5 +100,4 @@ onMounted(async () => {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
 </style>

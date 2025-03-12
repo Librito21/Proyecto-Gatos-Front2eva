@@ -5,7 +5,7 @@ export default class ProtectoraDto {
         public direccion: string,
         public email: string,
         public telefono: number,
-        public pagina_Web: string,
+        public horario_Atención: string,
         public imagen_Protectora: string
     ) { }
 }

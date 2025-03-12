@@ -32,6 +32,7 @@ const handleRegister = async () => {
       },
       body: JSON.stringify({
         nombre: nombre.value,
+        apellido: apellido.value,
         email: email.value,
         contraseña: contraseña.value
       })
