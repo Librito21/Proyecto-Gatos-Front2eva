@@ -38,5 +38,6 @@ const props = defineProps({
 
 .protectora-card__image{
   max-height: 260px;
+  min-height: 260px;
 }
 </style>

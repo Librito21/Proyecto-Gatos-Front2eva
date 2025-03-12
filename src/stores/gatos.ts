@@ -29,12 +29,11 @@ export const usegatosStore = defineStore('gatos', () => {
         localStorage.setItem('gatosDeseados', JSON.stringify(gatosDeseados.value));
     }
 
-    function createGato(gato: GatoDto) {
-        //fetch(POST)
-        //body: JSON.stringify()
-        gatos.value.push(gato)
-        aplicarFiltros() // Volver a aplicar los filtros cuando se agregue un gato
-    }
+    /* function createGato(gato: GatoDto) {
+         //fetch(POST)
+         //body: JSON.stringify()
+         gatos.value.push(gato)
+     }*/
 
     async function fetchGato() {
         try {
@@ -160,6 +159,77 @@ export const usegatosStore = defineStore('gatos', () => {
         }
     }
 
+    async function createGato(nuevoGato: GatoDto) {
+        try {
+            const response = await fetch("https://localhost:7278/api/Gato", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    nombre_Gato: nuevoGato.nombre_Gato,
+                    raza: nuevoGato.raza,
+                    edad: nuevoGato.edad,
+                    sexo: nuevoGato.sexo,
+                    esterilizado: nuevoGato.esterilizado,
+                    descripcion_Gato: nuevoGato.descripcion_Gato,
+                    imagen_Gato: nuevoGato.imagen_Gato,
+                    id_Protectora: nuevoGato.id_Protectora
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error("Error al agregar el gato");
+            }
+
+            const gatoCreado = await response.json();
+            gatos.value.push(gatoCreado);
+            console.log("Gato agregado exitosamente:", gatoCreado);
+            aplicarFiltros() // Volver a aplicar los filtros cuando se agregue un gato
+
+        } catch (error) {
+            console.error("Error al agregar el gato:", error);
+        }
+    }
+
+    async function deleteGato(id_Gato: number) {
+        try {
+            const response = await fetch(`https://localhost:7278/api/Gato/${id_Gato}`, {
+                method: "DELETE"
+            });
+
+            if (!response.ok) {
+                throw new Error("Error al eliminar el gato");
+            }
+
+            gatos.value = gatos.value.filter(g => g.id_Gato !== id_Gato);
+            console.log(`Gato con ID ${id_Gato} eliminado correctamente.`);
+        } catch (error) {
+            console.error("Error al eliminar el gato:", error);
+        }
+    }
+
+    async function updateGato(gato: GatoDto) {
+        try {
+            console.log("Enviando datos para actualizar:", gato);
+
+            const response = await fetch(`https://localhost:7278/api/Gato/${gato.id_Gato}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(gato)
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error("Error en la API:", errorText);
+                throw new Error("Error al actualizar el usuario");
+            }
+
+            gatos.value = gatos.value.map(g => (g.id_Gato === gato.id_Gato ? gato : g));
+            console.log("Gato actualizado correctamente:", gato);
+            aplicarFiltros()
+        } catch (error) {
+            console.error("Error al actualizar el gato:", error);
+        }
+    }
 
     return {
         gatos,
@@ -167,6 +237,8 @@ export const usegatosStore = defineStore('gatos', () => {
         filtros,
         gatosDeseados,
         createGato,
+        deleteGato,
+        updateGato,
         fetchGato,
         actualizarFiltros,
         aplicarFiltros,

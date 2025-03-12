@@ -1,10 +1,10 @@
 export default class UserDto {
     constructor(
-        public Id_Usuario: number,
-        public Nombre_Usuario: string,
-        public Apellido: string,
-        public Contraseña: string,
-        public Email_Usuario: string,
-        public Fecha_Registro: Date
+        public id_Usuario: number,
+        public nombre: string,
+        public apellido: string,
+        public contraseña: string,
+        public email: string,
+        public fecha_Registro: Date
     ) { }
 }
