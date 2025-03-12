@@ -18,12 +18,7 @@ spec:
     spec:
       containers:
       - name: gato
-        image: santospardos/docker-frontend-car:00
+        image: robertogm1333/adoptaback:frontvfinal
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+        - containerPort: 3000

@@ -38,7 +38,7 @@ export const usegatosStore = defineStore('gatos', () => {
 
     async function fetchGato() {
         try {
-            const response = await fetch("https://localhost:7278/api/Gato");
+            const response = await fetch("https://adoptaragonapi.retocsv.es/api/Gato");
 
             if (!response.ok) {
                 throw new Error('Error en la solicitud');
@@ -76,7 +76,7 @@ export const usegatosStore = defineStore('gatos', () => {
 
     async function obtenerGatosDeseados(id_Usuario: number) {
         try {
-            const response = await fetch(`https://localhost:7278/api/Deseado/usuario/${id_Usuario}`);
+            const response = await fetch(`https://adoptaragonapi.retocsv.es/api/Deseado/usuario/${id_Usuario}`);
             if (!response.ok) {
                 throw new Error('Error al obtener los gatos deseados');
             }
@@ -85,7 +85,7 @@ export const usegatosStore = defineStore('gatos', () => {
             // Obtener la información completa de cada gato incluyendo `id_Deseado`
             const gatosCompletos = await Promise.all(
                 data.map(async (deseado: any) => {
-                    const gatoResponse = await fetch(`https://localhost:7278/api/Gato/${deseado.id_Gato}`);
+                    const gatoResponse = await fetch(`https://adoptaragonapi.retocsv.es/api/Gato/${deseado.id_Gato}`);
                     if (!gatoResponse.ok) {
                         throw new Error(`Error al obtener el gato con id ${deseado.id_Gato}`);
                     }
@@ -105,7 +105,7 @@ export const usegatosStore = defineStore('gatos', () => {
 
     async function agregarGatoADeseados(idUsuario: number, id_Gato: number) {
         try {
-            const response = await fetch('https://localhost:7278/api/Deseado', {
+            const response = await fetch('https://adoptaragonapi.retocsv.es/api/Deseado', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -143,7 +143,7 @@ export const usegatosStore = defineStore('gatos', () => {
     // Eliminar un gato de los deseados usando el idDeseado
     async function eliminarGatoDeDeseados(idDeseado: number) {
         try {
-            const response = await fetch(`https://localhost:7278/api/Deseado/${idDeseado}`, {
+            const response = await fetch(`https://adoptaragonapi.retocsv.es/api/Deseado/${idDeseado}`, {
                 method: 'DELETE'
             });
 

@@ -31,7 +31,7 @@ export const useprotectorasStore = defineStore('protectoras', () => {
 
  async function fetchProtectora() {
         try {
-            const response = await fetch("https://localhost:7278/api/Protectora");
+            const response = await fetch("https://adoptaragonapi.retocsv.es/api/Protectora");
 
             if (!response.ok) {
                 throw new Error('Error en la solicitud');
