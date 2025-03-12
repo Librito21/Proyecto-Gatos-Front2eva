@@ -3,7 +3,6 @@ import ProtectorasCard from '@/components/ProtectorasCard.vue';
 import { useprotectorasStore } from '@/stores/protectoras';
 
 const store = useprotectorasStore();
-store.findAll();
 store.fetchProtectora();
 </script>
 
