@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: gato
-        image: robertogm1333/adoptaback:frontvfinal
+        image: robertogm1333/frontend:lastest
         imagePullPolicy: Always
         ports:
-        - containerPort: 3000
+        - containerPort: 80

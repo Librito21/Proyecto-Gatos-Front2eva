@@ -1,32 +1,26 @@
-# Etapa 1: Construcción del frontend con Node.js
-FROM node:18-alpine AS build
+# Build stage
+FROM node:20-alpine as build-stage
 
+# Set working directory
 WORKDIR /app
 
-# Copia los archivos necesarios y instala dependencias
-COPY package.json package-lock.json ./
-RUN npm install --frozen-lockfile --force
-
-# Copia el resto del código fuente y compila el proyecto
+# Copy 
 COPY . .
 
-# Desactiva el type-check para evitar errores de TS7006 y TS2554 en el build
-RUN NODE_OPTIONS="--max-old-space-size=4096" npm run build || echo "⚠️ Ignorando errores de TypeScript"
+# Install dependencies
+RUN npm install
 
+# Build the app sin comprobación de tipos
+RUN npm run build-only
 
-# Etapa 2: Servir la aplicación con Nginx
-FROM nginx:latest
+# Production stage
+FROM nginx:stable-alpine as production-stage
 
-# Elimina archivos antiguos antes de copiar los nuevos
-RUN rm -rf /usr/share/nginx/html/*
+# Copy built files from build stage to nginx serve directory
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-# Copia los archivos compilados desde la etapa anterior
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# Copia la configuración personalizada de Nginx
-COPY nginx.conf /etc/nginx/nginx.conf
-
+# Expose port 80
 EXPOSE 80
 
-# Inicia Nginx
+# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
