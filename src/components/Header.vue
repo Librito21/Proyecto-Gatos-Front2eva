@@ -123,6 +123,7 @@ function resetPaw(ctx: CanvasRenderingContext2D) {
       <div class="text">
         <nav>
           <RouterLink to="/gato">Gatos</RouterLink>
+          <RouterLink to="/conejo">Conejos</RouterLink>
           <RouterLink to="/protectoras">Protectoras</RouterLink>
         </nav>
         <div class="usuario">

@@ -12,6 +12,7 @@ import GestionGatosView from '@/views/GestionGatosView.vue';
 import GestionProtectorasView from '../views/GestionProtectorasView.vue';
 import GestionUsuariosView from '../views/GestionUsuariosView.vue';
 import { useAutenticacion } from '@/stores/Autentificacion';
+import ConejosView from '@/views/ConejosView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -84,6 +85,11 @@ const router = createRouter({
           component: GestionUsuariosView
         }
       ]
+    },
+    {
+      path: '/conejo',
+      name: 'conejos',
+      component: ConejosView
     },
   ],
   scrollBehavior(to, from, savedPosition) {
