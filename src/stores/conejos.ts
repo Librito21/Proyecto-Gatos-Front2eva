@@ -42,13 +42,33 @@ export const useConejosStore = defineStore('conejos', () => {
         })
     }
 
+    async function createConejo(nuevoConejo: ConejoDto) {
+        try {
+            const response = await fetch("https://localhost:7278/api/Conejo", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(nuevoConejo)
+            });
 
+            if (!response.ok) {
+                throw new Error('Error en la solicitud');
+            }
 
+            const data: ConejoDto = await response.json();
+            conejos.value.push(data)
+            console.log('Conejo creado:', data);
+        } catch (error) {
+            console.error('Error al crear el conejo:', error);
+        }
+    }
     return {
         conejos,
         conejosFiltrados,
         filtros,
         fetchConejo,
+        createConejo,
         actualizarFiltros
     }
 })

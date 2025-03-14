@@ -12,7 +12,7 @@ const props = defineProps({
 
 <template>
   <v-card class="conejo-card" max-width="344">
-    <v-card>
+    <v-card @click="$router.push(`/detalles-conejo/${conejo.id_Conejo}`)">
       <v-img class="conejo-card__imagen" :src="conejo.imagen_Conejo" height="200px"></v-img>
       <v-card-title>{{ conejo.nombre_Conejo }}</v-card-title>
       <v-card-subtitle>{{ conejo.raza }}</v-card-subtitle>
