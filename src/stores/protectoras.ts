@@ -5,31 +5,8 @@ import type ProtectoraDto from './dtos/protectoras.dto'
 export const useprotectorasStore = defineStore('protectoras', () => {
     const protectoras = ref(new Array<ProtectoraDto>())
 
-    function findAll() {
-        //fetch('https://jsonplaceholder.typicode.com/user')
-        //resizeBy.json()
-        //data
-        /*let data = [
-            { Id_Protectora: 0, Nombre_Protectora: 'test', Direccion: 'test', Correo_Protectora: 'test', Telefono_Protectora: 758149491, Horario_Atención: 'test', Imagen_Protectora: 'test' },
-            { Id_Protectora: 1, Nombre_Protectora: 'test', Direccion: 'test', Correo_Protectora: 'test', Telefono_Protectora: 752963188, Horario_Atención: 'test', Imagen_Protectora: 'test' },
-        ]
-        protectoras.value.splice(0, protectoras.value.length, ...data)*/
-    }
-    function createProtectora(protectora: ProtectoraDto) {
-        //fetch(POST)
-        //body: JSON.stringify()
 
-        protectoras.value.push(protectora)
-    }
-    function deleteProtectora() {
-
-    }
-    function updateProtectora() {
-
-    }
-
-
- async function fetchProtectora() {
+    async function fetchProtectora() {
         try {
             const response = await fetch("https://adoptaragonapi.retocsv.es/api/Protectora");
 
@@ -45,15 +22,78 @@ export const useprotectorasStore = defineStore('protectoras', () => {
         }
     }
 
+    async function createProtectora(nuevaProtectora: ProtectoraDto) {
+        console.log("Datos enviados a la API:", nuevaProtectora);
+        try {
+            const response = await fetch("https://adoptaragonapi.retocsv.es/api/Protectora", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(nuevaProtectora),
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error("Error en la API:", errorText);
+                throw new Error("Error al agregar la protectora");
+            }
+
+            const protectoraCreada = await response.json();
+            protectoras.value.push(protectoraCreada);
+            console.log("Protectora agregada:", protectoraCreada);
+        } catch (error) {
+
+            console.error("Error al agregar protectora:", error);
+        }
+    }
+
+    async function deleteProtectora(id_Protectora: number) {
+        if (!id_Protectora) return;
+
+        try {
+            const response = await fetch(`https://adoptaragonapi.retocsv.es/api/Protectora/${id_Protectora}`, {
+                method: "DELETE",
+            });
+
+            if (!response.ok) throw new Error("Error al eliminar la protectora");
+
+            protectoras.value = protectoras.value.filter(p => p.id_Protectora !== id_Protectora);
+            console.log(`Protectora con ID ${id_Protectora} eliminada.`);
+        } catch (error) {
+            console.error("Error al eliminar protectora:", error);
+        }
+    }
+
+    async function updateProtectora(protectora: ProtectoraDto) {
+        try {
+            console.log("Enviando datos para actualizar:", protectora);
+
+            const response = await fetch(`https://adoptaragonapi.retocsv.es/api/Protectora/${protectora.id_Protectora}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(protectora),
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error("Error en la API:", errorText);
+                throw new Error("Error al actualizar la protectora");
+            }
+
+            protectoras.value = protectoras.value.map(p => (p.id_Protectora === protectora.id_Protectora ? protectora : p));
+            console.log("Protectora actualizada correctamente:", protectora);
+        } catch (error) {
+            console.error("Error al actualizar protectora:", error);
+        }
+    }
+
     // REST
     // create, delete, updated....
 
     return {
         protectoras,
-        findAll,
+        fetchProtectora,
         createProtectora,
         deleteProtectora,
         updateProtectora,
-        fetchProtectora
     }
 })
